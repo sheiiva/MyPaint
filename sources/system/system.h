@@ -14,6 +14,7 @@
     #include "new.h"
 
     #include "clock.h"
+    #include "eventManager.h"
     #include "window.h"
 
     #define TIMEREFRESH 0.1
@@ -25,8 +26,9 @@
 
         /* Special Definition*/
         int                 _running;
-        WindowClass*        _window;
         ClockClass*         _clock;
+        EventManagerClass*  _eventManager;
+        WindowClass*        _window;
 
         /* Methods definitions*/
         void    (*__gameLoop__)(struct s_SystemClass*);

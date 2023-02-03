@@ -19,7 +19,7 @@ static void System_gloop(SystemClass *this)
     this->_running = true;
 
     while (isWindowOpen(this->_window) && this->_running) {
-        // handleEvents(currentScene->eventManager, this);
+        handleEvents(this->_eventManager, this);
         // processScene(currentScene, this);
         clearWindow(this->_window);
         displaySystem(this);
@@ -29,16 +29,18 @@ static void System_gloop(SystemClass *this)
 static void System_ctor(SystemClass *this, __UNUSED__ va_list *args)
 {
     // Initialize internal resources
-    this->_window = new(Window);
     this->_clock = new(Clock);
+    this->_eventManager = new(EventManager);
+    this->_window = new(Window);
 
     printf("System()\n");
 }
 
 static void System_dtor(SystemClass *this)
 {
-    delete(this->_window);
     delete(this->_clock);
+    delete(this->_eventManager);
+    delete(this->_window);
 
     printf("~System()\n");
 }
@@ -59,8 +61,9 @@ static const SystemClass _description = {
         .__lt__ = NULL
     },
     ._running = false,
-    ._window = NULL,
     ._clock = NULL,
+    ._eventManager = NULL,
+    ._window = NULL,
     /* Methods definitions */
     .__display__ = &System_display,
     .__gameLoop__ = &System_gloop,

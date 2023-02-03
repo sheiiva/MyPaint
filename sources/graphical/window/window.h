@@ -13,7 +13,7 @@
     #include <SFML/Window.h>
     #include <SFML/Graphics.h>
 
-    #include "object.h"
+    #include "new.h"
 
     #define FRAMERATE 60
 
@@ -28,14 +28,15 @@
 
         /* Methods Pointers*/
         void    (*__clear__)(struct s_WindowClass*);
+        void    (*__close__)(struct s_WindowClass*);
         void    (*__display__)(struct s_WindowClass*);
         sfBool  (*__isOpen__)(struct s_WindowClass*);
-
     } WindowClass;
 
     extern const Class *Window;
 
     #define clearWindow(c)           ((WindowClass*)c)->__clear__(c)
+    #define closeWindow(c)           ((WindowClass*)c)->__close__(c)
     #define displayWindow(c)         ((WindowClass*)c)->__display__(c)
     #define isWindowOpen(c)          ((WindowClass*)c)->__isOpen__(c)
 

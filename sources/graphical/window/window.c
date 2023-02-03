@@ -7,24 +7,26 @@
 **
 */
 
-#include "new.h"
-#include "raise.h"
-
 #include "window.h"
-
-static sfBool Window_isOpen(WindowClass *this)
-{
-    return sfRenderWindow_isOpen(this->_window);
-}
 
 void Window_clear(WindowClass *this)
 {
     sfRenderWindow_clear(this->_window, sfBlack);
 }
 
+static void Window_close(WindowClass *this)
+{
+    sfRenderWindow_close(this->_window);
+}
+
 void Window_display(WindowClass *this)
 {
     sfRenderWindow_display(this->_window);
+}
+
+static sfBool Window_isOpen(WindowClass *this)
+{
+    return sfRenderWindow_isOpen(this->_window);
 }
 
 static void Window_ctor(WindowClass *this, __UNUSED__ va_list *args)
@@ -67,6 +69,7 @@ static const WindowClass _description = {
     ._window = NULL,
     /* Methods definitions */
     .__clear__ =    &Window_clear,
+    .__close__ =    &Window_close,
     .__display__ =  &Window_display,
     .__isOpen__ =   &Window_isOpen,
 };
