@@ -19,6 +19,8 @@
 
     #define TIMEREFRESH 0.1
 
+    typedef struct s_SceneClass SceneClass;
+
     typedef struct s_SystemClass {
 
         /* Inheritance */
@@ -28,6 +30,7 @@
         int                 _running;
         ClockClass*         _clock;
         EventManagerClass*  _eventManager;
+        SceneClass*         _scene;
         WindowClass*        _window;
 
         /* Methods definitions*/

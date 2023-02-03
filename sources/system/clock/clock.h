@@ -20,7 +20,7 @@
         Class base;
 
         /* Special Definition*/
-        sfClock *clock;
+        sfClock*        _clock;
     } ClockClass;
 
     extern const Class *Clock;

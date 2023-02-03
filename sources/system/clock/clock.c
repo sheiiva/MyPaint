@@ -12,8 +12,8 @@
 static void Clock_ctor(ClockClass *this, __UNUSED__ va_list *args)
 {
     // Initialize internal resources
-    this->clock = sfClock_create();
-    if (!this->clock)
+    this->_clock = sfClock_create();
+    if (!this->_clock)
         raise("Cannot create system's clock.");
 
     printf("Clock()\n");
@@ -22,7 +22,7 @@ static void Clock_ctor(ClockClass *this, __UNUSED__ va_list *args)
 static void Clock_dtor(ClockClass *this)
 {
     // Release internal resources
-    sfClock_destroy(this->clock);
+    sfClock_destroy(this->_clock);
 
     printf("~Clock()\n");
 }
@@ -42,7 +42,7 @@ static const ClockClass _description = {
         .__gt__ = NULL,
         .__lt__ = NULL
     },
-    .clock = NULL
+    ._clock = NULL
 };
 
 const Class *Clock = (const Class *)&_description;

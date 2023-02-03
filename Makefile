@@ -17,7 +17,7 @@ SOURCES		=	$(shell find . -name '*.c')
 
 OBJ 		= 	$(SOURCES:.c=.o)
 
-override CFLAGS 	+=	-g3 -W -Wall -Werror -Wextra $(INCLUDES)
+override CFLAGS 	+=	-g3 -W -Wall -Wextra $(INCLUDES)
 override LDLIBS 	+=	-lm -lcsfml-audio -lcsfml-graphics -lcsfml-system -lcsfml-window
 
 NAME 		= 	$(ROOT_PATH)MyPaint
