@@ -14,6 +14,7 @@ int main(void)
 {
     Object *system = new(System);
 
+    run(system);
     delete(system);
     return (0);
 }
