@@ -8,12 +8,12 @@
 */
 
 #include "system.h"
+#include "window.h"
 #include "scene.h"
 
 static void System_display(SystemClass *this)
 {
-    this->_scene->__draw__(this->_scene, this->_window->_window);
-    // drawScene(this->_scene, this->_window->_window)
+    drawScene(this->_scene, this->_window);
     displayWindow(this->_window);
 }
 

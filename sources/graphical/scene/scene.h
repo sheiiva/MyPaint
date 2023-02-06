@@ -22,8 +22,10 @@
     // #include "image.h"
     // #include "text.h"
 
-    #include "system.h"
     #include "button.h"
+
+    typedef struct s_SystemClass SystemClass;
+    typedef struct s_WindowClass WindowClass;
 
     typedef struct s_SceneClass {
 
@@ -37,7 +39,7 @@
         Object*         _buttons;
 
         /* Methods definitions */
-        void    (*__draw__)(struct s_SceneClass*, sfRenderWindow*);
+        void    (*__draw__)(struct s_SceneClass*, WindowClass*);
         void    (*__process__)(struct s_SceneClass*, SystemClass*);
 
     } SceneClass;

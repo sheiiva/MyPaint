@@ -41,7 +41,7 @@
 
     extern const Class *System;
 
-    #define displaySystem(c)       ((SystemClass*)c)->__display__(c)
-    #define run(c)              ((SystemClass*)c)->__gameLoop__(c)
+    #define displaySystem(c)        ((SystemClass*)c)->__display__(c)
+    #define run(c)                  ((SystemClass*)c)->__gameLoop__(c)
 
 #endif /* !SYSTEM_H_ */

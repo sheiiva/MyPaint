@@ -8,8 +8,10 @@
 */
 
 #include "scene.h"
+#include "system.h"
+#include "window.h"
 
-static void Scene_draw(SceneClass *this, sfRenderWindow* window)
+static void Scene_draw(SceneClass *this, WindowClass* window)
 {
     // for (size_t i = 0; i < len(this->images); i++)
     //     displayImage(getitem(this->images, i), window);
@@ -32,7 +34,7 @@ static void Scene_process(__UNUSED__ SceneClass *this, SystemClass *system)
     sfClock_restart(system->_clock->_clock);
 }
 
-static void Scene_ctor(__UNUSED__ SceneClass *this, __UNUSED__ va_list *args)
+static void Scene_ctor(SceneClass *this, __UNUSED__ va_list *args)
 {
     // Initialize internal resources
     this->_buttons = new(Array, 1, Button,

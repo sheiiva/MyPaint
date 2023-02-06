@@ -16,6 +16,7 @@
     #include "object.h"
 
     typedef struct s_SystemClass SystemClass;
+    typedef struct s_WindowClass WindowClass;
 
     typedef enum e_gui_state {
         DEFAULT,
@@ -36,7 +37,7 @@
         sfColor            _hoverColor;
 
         /* Methods Pointers*/
-        void    (*__draw__)(struct s_ButtonClass*, sfRenderWindow*);
+        void    (*__draw__)(struct s_ButtonClass*, WindowClass*);
         void    (*__process__)(struct s_ButtonClass*, SystemClass*);
 
         void    (*__onClick__)(struct s_ButtonClass*, SystemClass*);

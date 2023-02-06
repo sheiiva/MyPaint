@@ -9,10 +9,11 @@
 
 #include "button.h"
 #include "system.h"
+#include "window.h"
 
-static void Button_draw(ButtonClass *this, sfRenderWindow *window)
+static void Button_draw(ButtonClass *this, WindowClass *window)
 {
-    sfRenderWindow_drawRectangleShape(window, this->_shape, NULL);
+    sfRenderWindow_drawRectangleShape(window->_window, this->_shape, NULL);
 }
 
 static void Button_processButton(ButtonClass *this, SystemClass *system)
