@@ -22,7 +22,7 @@
     // #include "image.h"
     // #include "text.h"
 
-    #include "button.h"
+    #include "buttonManager.h"
 
     typedef struct s_SystemClass SystemClass;
     typedef struct s_WindowClass WindowClass;
@@ -33,10 +33,10 @@
         Class base;
 
         /* Special Definition*/
-        // Object*     images;
+        // Object*     images;s
         // Object*     texts;
         // Object*     sounds;
-        Object*         _buttons;
+        ButtonManagerClass*         _mbuttons;
 
         /* Methods definitions */
         void    (*__draw__)(struct s_SceneClass*, WindowClass*);
