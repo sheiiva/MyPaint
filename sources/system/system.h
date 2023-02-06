@@ -17,7 +17,7 @@
     #include "eventManager.h"
     #include "window.h"
 
-    #define TIMEREFRESH 0.1
+    #define TIMEREFRESH 0.01
 
     typedef struct s_SceneClass SceneClass;
 
