@@ -49,13 +49,16 @@
     #define drawScene(s, w)         ((SceneClass*)s)->__draw__(s, w)
     #define processScene(s, sys)    ((SceneClass*)s)->__process__(s, sys)
 
+    /* BUTTONS */
+    #define BUTTONNUMBER    1
+
     /* IMAGES */
-    #define IMAGENUMBER    0
+    #define IMAGENUMBER     0
 
     /* TEXTS */
-    #define TEXTNUMBER     0
+    #define TEXTNUMBER      0
 
     /* SOUNDS */
-    #define SOUNDNUMBER    0
+    #define SOUNDNUMBER     0
 
 #endif /* !SCENE_H_ */

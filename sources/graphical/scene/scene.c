@@ -11,6 +11,8 @@
 #include "system.h"
 #include "window.h"
 
+#include "fileButton.h"
+
 static void Scene_draw(SceneClass *this, WindowClass* window)
 {
     // for (size_t i = 0; i < len(this->images); i++)
@@ -36,6 +38,8 @@ static void Scene_ctor(SceneClass *this, __UNUSED__ va_list *args)
 {
     // Initialize internal resources
     this->_mbuttons = new(ButtonManager, BUTTONNUMBER);
+
+    setButton(this->_mbuttons, 0, (sfVector2f){0, 0}, (sfVector2f){100, 100}, sfRed, sfBlue, sfGreen, &FileButton_onClick);
 
     printf("Scene()\n");
 }

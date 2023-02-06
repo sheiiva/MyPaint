@@ -24,6 +24,24 @@ static void ButtonManager_processButtons(ButtonManagerClass *this, SystemClass *
         processButton(getitem(this->_buttonArray, i), system);
 }
 
+static void ButtonManager_setButton(ButtonManagerClass *this, ...)
+{
+    va_list args;
+    va_start(args, this);
+
+    size_t index = va_arg(args, size_t);
+    ButtonClass *button = getitem(this->_buttonArray, index);
+
+    setButtonPosition(button, va_arg(args, sfVector2f));
+    setButtonSize(button, va_arg(args, sfVector2f));
+    button->_defaultColor = va_arg(args, sfColor);
+    button->_clickColor = va_arg(args, sfColor);
+    button->_hoverColor = va_arg(args, sfColor);
+    button->__onClick__ = va_arg(args, void (*)(ButtonClass*, SystemClass*));
+
+    va_end(args);
+}
+
 static void ButtonManager_ctor(ButtonManagerClass *this, va_list *args)
 {
     this->_buttonArray = new(Array, va_arg(*args, size_t), Button);
@@ -56,7 +74,8 @@ static const ButtonManagerClass _description = {
     },
     /* Methods definitions */
     .__drawButtons__ = &ButtonManager_drawButtons,
-    .__processButtons__ = &ButtonManager_processButtons
+    .__processButtons__ = &ButtonManager_processButtons,
+    .__setButton__ = &ButtonManager_setButton
 };
 
 const Class *ButtonManager = (const Class *)&_description;

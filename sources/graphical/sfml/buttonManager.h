@@ -19,8 +19,6 @@
     typedef struct s_SystemClass SystemClass;
     typedef struct s_WindowClass WindowClass;
 
-    #define BUTTONNUMBER    1
-
     typedef struct s_ButtonManagerClass {
 
         /* Inheritance */
@@ -32,12 +30,13 @@
         /* Methods definitions */
         void (*__drawButtons__)(struct s_ButtonManagerClass*,  WindowClass*);
         void (*__processButtons__)(struct s_ButtonManagerClass*,  SystemClass*);
+        void (*__setButton__)(struct s_ButtonManagerClass*, ...);
 
     } ButtonManagerClass;
 
     #define drawButtons(b, w)       ((ButtonManagerClass*)b)->__drawButtons__(b, w)
     #define processButtons(b, s)    ((ButtonManagerClass*)b)->__processButtons__(b, s)
-    #define createButton(b, ...)    ((Container *)b)->__setitem__(b, __VA_ARGS__)
+    #define setButton(b, ...)       ((ButtonManagerClass*)b)->__setButton__(b, __VA_ARGS__)
 
     extern const Class *ButtonManager;
 
