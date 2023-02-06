@@ -39,7 +39,7 @@ static void Scene_ctor(SceneClass *this, __UNUSED__ va_list *args)
     // Initialize internal resources
     this->_mbuttons = new(ButtonManager, BUTTONNUMBER);
 
-    setButton(this->_mbuttons, 0, (sfVector2f){0, 0}, (sfVector2f){100, 100}, sfRed, sfBlue, sfGreen, &FileButton_onClick);
+    setButton(this->_mbuttons, FILEBUTTON_I, FILEBUTTON_POS, FILEBUTTON_SIZE, FILEBUTTON_DEFAULT_COLOR, FILEBUTTON_HOVER_COLOR, FILEBUTTON_CLICK_COLOR, &FileButton_onClick);
 
     printf("Scene()\n");
 }
