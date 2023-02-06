@@ -21,7 +21,8 @@
     typedef enum e_gui_state {
         DEFAULT,
         HOVER,
-        CLICK
+        CLICK,
+        HIDE
     } gui_state;
 
     typedef struct s_ButtonClass {
