@@ -23,6 +23,7 @@
     // #include "text.h"
 
     #include "system.h"
+    #include "button.h"
 
     typedef struct s_SceneClass {
 
@@ -33,16 +34,17 @@
         // Object*     images;
         // Object*     texts;
         // Object*     sounds;
+        Object*         _buttons;
 
         /* Methods definitions */
-        void    (*__display__)(struct s_SceneClass*, sfRenderWindow*);
+        void    (*__draw__)(struct s_SceneClass*, sfRenderWindow*);
         void    (*__process__)(struct s_SceneClass*, SystemClass*);
 
     } SceneClass;
 
     extern const Class *Scene;
 
-    #define displayScene(s, w)      ((SceneClass*)s)->__display__(s, w)
+    #define drawScene(s, w)         ((SceneClass*)s)->__draw__(s, w)
     #define processScene(s, sys)    ((SceneClass*)s)->__process__(s, sys)
 
     /* IMAGES */

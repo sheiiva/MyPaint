@@ -12,8 +12,8 @@
 
 static void System_display(SystemClass *this)
 {
-    this->_scene->__display__(this->_scene, this->_window->_window);
-    // displayScene(this->_scene, this->_window->_window)
+    this->_scene->__draw__(this->_scene, this->_window->_window);
+    // drawScene(this->_scene, this->_window->_window)
     displayWindow(this->_window);
 }
 
@@ -71,8 +71,8 @@ static const SystemClass _description = {
     ._scene = NULL,
     ._window = NULL,
     /* Methods definitions */
-    .__display__ = &System_display,
     .__gameLoop__ = &System_gloop,
+    .__display__ = &System_display,
 };
 
 const Class *System = (const Class *)&_description;
