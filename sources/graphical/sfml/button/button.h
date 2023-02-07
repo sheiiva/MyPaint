@@ -14,16 +14,10 @@
     #include <SFML/System.h>
 
     #include "object.h"
+    #include "gui_state.h"
 
     typedef struct s_SystemClass SystemClass;
     typedef struct s_WindowClass WindowClass;
-
-    typedef enum e_gui_state {
-        DEFAULT,
-        HOVER,
-        CLICK,
-        HIDE
-    } gui_state;
 
     typedef struct s_ButtonClass {
 
