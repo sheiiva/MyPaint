@@ -46,10 +46,7 @@ static void Button_onDefault(ButtonClass *this, __UNUSED__ SystemClass *system)
 
 static sfBool Button_isClicked(ButtonClass *this, SystemClass *system)
 {
-    if (isButtonHover(this, system) && sfMouse_isButtonPressed(sfMouseLeft))
-        this->_state = CLICK;
-    else
-        this->_state = DEFAULT;
+    this->_state = isButtonHover(this, system) && sfMouse_isButtonPressed(sfMouseLeft) ? CLICK : DEFAULT;
     return (this->_state == CLICK);
 }
 
@@ -58,44 +55,14 @@ static sfBool Button_isHover(ButtonClass *this, SystemClass *system)
     sfVector2i mousePos = sfMouse_getPositionRenderWindow(system->_window->_window);
     sfFloatRect rect = sfRectangleShape_getGlobalBounds(this->_shape);
 
-    if (sfFloatRect_contains(&rect, mousePos.x, mousePos.y)) {
-        this->_state = HOVER;
-    } else {
-        this-> _state = DEFAULT;
-    }
+    this->_state = sfFloatRect_contains(&rect, mousePos.x, mousePos.y) ? HOVER : DEFAULT;
     return (this->_state == HOVER);
-}
-
-static void Button_setPosition(ButtonClass *this, sfVector2f pos)
-{
-    sfRectangleShape_setPosition(this->_shape, pos);
-}
-
-static void Button_setSize(ButtonClass *this, sfVector2f size)
-{
-    sfRectangleShape_setSize(this->_shape, size);
-}
-
-static void Button_setFillColor(ButtonClass *this, sfColor color)
-{
-    sfRectangleShape_setFillColor(this->_shape, color);
-}
-
-static void Button_setOutlineColor(ButtonClass *this, sfColor color)
-{
-    sfRectangleShape_setOutlineColor(this->_shape, color);
-}
-
-static void Button_setOutlineThickness(ButtonClass *this, float thickness)
-{
-    sfRectangleShape_setOutlineThickness(this->_shape, thickness);
 }
 
 static void Button_ctor(ButtonClass *this, va_list *args)
 {
     // Initialize internal resources
-    this->_shape = sfRectangleShape_create();
-    if (!this->_shape)
+    if (!(this->_shape = sfRectangleShape_create()))
         raise("Cannot create button.");
 
     setButtonPosition(this, va_arg(*args, sfVector2f));
@@ -141,11 +108,6 @@ static const ButtonClass _description = {
     .__onDefault__ = &Button_onDefault,
     .__isClicked__ = &Button_isClicked,
     .__isHover__ = &Button_isHover,
-    .__setPosition__ = &Button_setPosition,
-    .__setSize__ = &Button_setSize,
-    .__setFillColor__ = &Button_setFillColor,
-    .__setOutlineColor__ = &Button_setOutlineColor,
-    .__setOutlineThickness__ = &Button_setOutlineThickness
 };
 
 const Class *Button = (const Class *)&_description;

@@ -42,12 +42,6 @@
         sfBool  (*__isClicked__)(struct s_ButtonClass*, SystemClass*);
         sfBool  (*__isHover__)(struct s_ButtonClass*, SystemClass*);
 
-        void    (*__setPosition__)(struct s_ButtonClass*, sfVector2f);
-        void    (*__setSize__)(struct s_ButtonClass*, sfVector2f);
-        void    (*__setFillColor__)(struct s_ButtonClass*, sfColor);
-        void    (*__setOutlineColor__)(struct s_ButtonClass*, sfColor);
-        void    (*__setOutlineThickness__)(struct s_ButtonClass*, float);
-
     } ButtonClass;
 
     extern const Class *Button;
@@ -62,10 +56,10 @@
     #define isButtonHover(b, e)             ((ButtonClass*)b)->__isHover__(b, e)
     #define isButtonClicked(b, e)           ((ButtonClass*)b)->__isClicked__(b, e)
 
-    #define setButtonPosition(b, p)          ((ButtonClass*)b)->__setPosition__(b, p)
-    #define setButtonSize(b, s)              ((ButtonClass*)b)->__setSize__(b, s)
-    #define setButtonFillColor(b, c)         ((ButtonClass*)b)->__setFillColor__(b, c)
-    #define setButtonOutlineColor(b, c)      ((ButtonClass*)b)->__setOutlineColor__(b, c)
-    #define setButtonOutlineThickness(b, t)  ((ButtonClass*)b)->__setOutlineThickness__(b, t)
+    #define setButtonPosition(b, p)          sfRectangleShape_setPosition(((ButtonClass*)b)->_shape, p)
+    #define setButtonSize(b, s)              sfRectangleShape_setSize(((ButtonClass*)b)->_shape, s)
+    #define setButtonFillColor(b, c)         sfRectangleShape_setFillColor(((ButtonClass*)b)->_shape, c)
+    #define setButtonOutlineColor(b, c)      sfRectangleShape_setOutlineColor(((ButtonClass*)b)->_shape, c)
+    #define setButtonOutlineThickness(b, t)  sfRectangleShape_setOutlineThickness(((ButtonClass*)b)->_shape, t)
 
 #endif /* !BUTTON_H_ */
