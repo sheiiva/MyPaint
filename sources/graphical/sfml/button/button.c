@@ -75,16 +75,15 @@ static void Button_setText(ButtonClass *this, ...)
         delete(this->_text);
     va_start(args, this);
     this->_text = va_new(Text, &args);
+    va_end(args);
 
     // Center text
     sfFloatRect pos = sfText_getGlobalBounds(this->_text->_text);
     sfVector2f newPos = {
-        .x = sfRectangleShape_getSize(this->_shape).x + (sfRectangleShape_getSize(this->_shape).x / 2) - (pos.width / 2),
-        .y = sfRectangleShape_getSize(this->_shape).y + (sfRectangleShape_getSize(this->_shape).y / 2) + (pos.height / 2)
+        .x = sfRectangleShape_getPosition(this->_shape).x + (sfRectangleShape_getSize(this->_shape).x / 2) - (pos.width / 2),
+        .y = sfRectangleShape_getPosition(this->_shape).y + (sfRectangleShape_getSize(this->_shape).y / 2) - (pos.height / 2)
     };
     setTextPosition(this->_text, newPos);
-
-    va_end(args);
 }
 
 static void Button_ctor(ButtonClass *this, va_list *args)

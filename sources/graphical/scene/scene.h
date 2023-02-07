@@ -50,7 +50,7 @@
     #define processScene(s, sys)    ((SceneClass*)s)->__process__(s, sys)
 
     /* BUTTONS */
-    #define BUTTONNUMBER    1
+    #define BUTTONNUMBER    2
 
     /* IMAGES */
     #define IMAGENUMBER     0

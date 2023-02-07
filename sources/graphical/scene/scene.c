@@ -12,15 +12,19 @@
 #include "window.h"
 
 #include "fileButton.h"
+#include "helpButton.h"
 #include "colors.h"
 #include "fonts.h"
 
 static void Scene_draw(SceneClass *this, WindowClass* window)
 {
-    // for (size_t i = 0; i < len(this->images); i++)
-    //     displayImage(getitem(this->images, i), window);
-    // for (size_t i = 0; i < len(this->texts); i++)
-    //     displayText(getitem(this->texts, i), window);
+    // Draw the background
+    sfRenderWindow_clear(window->_window, (sfColor){248, 248, 248, 255});
+    // Draw header box
+    // Draw header tool box
+    // Draw canvas
+    // Draw texts
+    // Draw buttons
     drawButtons(this->_mbuttons, window);
 }
 
@@ -41,8 +45,12 @@ static void Scene_ctor(SceneClass *this, __UNUSED__ va_list *args)
     // Initialize internal resources
     this->_mbuttons = new(ButtonManager, BUTTONNUMBER);
 
+    // File button
     setButton(this->_mbuttons, FILEBUTTON_I, FILEBUTTON_POS, FILEBUTTON_SIZE, FILEBUTTON_DEFAULT_COLOR, FILEBUTTON_HOVER_COLOR, FILEBUTTON_CLICK_COLOR, &FileButton_onClick);
     setButtonText(getButton(this->_mbuttons, FILEBUTTON_I), FILEBUTTON_TEXT_STRING, FILEBUTTON_TEXT_SIZE, FILEBUTTON_POS, FILEBUTTON_TEXT_DEFAULT_COLOR, FILEBUTTON_TEXT_CLICK_COLOR, FILEBUTTON_TEXT_HOVER_COLOR, FILEBUTTON_TEXT_FONT);
+    // Help button
+    setButton(this->_mbuttons, HELPBUTTON_I, HELPBUTTON_POS, HELPBUTTON_SIZE, HELPBUTTON_DEFAULT_COLOR, HELPBUTTON_HOVER_COLOR, HELPBUTTON_CLICK_COLOR, &HelpButton_onClick);
+    setButtonText(getButton(this->_mbuttons, HELPBUTTON_I), HELPBUTTON_TEXT_STRING, HELPBUTTON_TEXT_SIZE, HELPBUTTON_POS, HELPBUTTON_TEXT_DEFAULT_COLOR, HELPBUTTON_TEXT_CLICK_COLOR, HELPBUTTON_TEXT_HOVER_COLOR, HELPBUTTON_TEXT_FONT);
 
     printf("Scene()\n");
 }
