@@ -37,6 +37,7 @@
     #define drawButtons(b, w)       ((ButtonManagerClass*)b)->__drawButtons__(b, w)
     #define processButtons(b, s)    ((ButtonManagerClass*)b)->__processButtons__(b, s)
     #define setButton(b, ...)       ((ButtonManagerClass*)b)->__setButton__(b, __VA_ARGS__)
+    #define getButton(b, i)         getitem(((ButtonManagerClass*)b)->_buttonArray, i)
 
     extern const Class *ButtonManager;
 

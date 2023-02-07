@@ -15,6 +15,8 @@
 
     #include "object.h"
     #include "gui_state.h"
+    #include "colors.h"
+    #include "text.h"
 
     typedef struct s_SystemClass SystemClass;
     typedef struct s_WindowClass WindowClass;
@@ -26,6 +28,10 @@
 
         /* Special Definition*/
         sfRectangleShape*  _shape;
+
+        TextClass*         _text;
+        // ImageClass*        _image;
+
         gui_state          _state;
         sfColor            _defaultColor;
         sfColor            _clickColor;
@@ -41,6 +47,8 @@
 
         sfBool  (*__isClicked__)(struct s_ButtonClass*, SystemClass*);
         sfBool  (*__isHover__)(struct s_ButtonClass*, SystemClass*);
+
+        void    (*__setText__)(struct s_ButtonClass*, ...);
 
     } ButtonClass;
 
@@ -61,5 +69,7 @@
     #define setButtonFillColor(b, c)         sfRectangleShape_setFillColor(((ButtonClass*)b)->_shape, c)
     #define setButtonOutlineColor(b, c)      sfRectangleShape_setOutlineColor(((ButtonClass*)b)->_shape, c)
     #define setButtonOutlineThickness(b, t)  sfRectangleShape_setOutlineThickness(((ButtonClass*)b)->_shape, t)
+
+    #define setButtonText(b, ...)            ((ButtonClass*)b)->__setText__(b, __VA_ARGS__)
 
 #endif /* !BUTTON_H_ */

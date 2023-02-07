@@ -12,33 +12,33 @@
 
     #include <SFML/Graphics.h>
 
-    #define TRANSPARENT sfTransparent
+    #define TRANSPARENT (sfColor){0, 0, 0, 0}
 
-    #define BLACK sfBlack
+    #define BLACK (sfColor){0, 0, 0, 255}
 
-    #define WHITE sfWhite
+    #define WHITE (sfColor){255, 255, 255, 255}
 
-    #define RED sfRed
+    #define RED (sfColor){255, 0, 0, 255}
     #define DARK_RED (sfColor){139, 0, 0, 255}
     #define LIGHT_RED (sfColor){255, 182, 193, 255}
 
-    #define GREEN sfGreen
+    #define GREEN (sfColor){0, 255, 0, 255}
     #define DARK_GREEN (sfColor){0, 100, 0, 255}
     #define LIGHT_GREEN (sfColor){144, 238, 144, 255}
 
-    #define BLUE sfBlue
+    #define BLUE (sfColor){0, 0, 255, 255}
     #define DARK_BLUE (sfColor){0, 0, 139, 255}
     #define LIGHT_BLUE (sfColor){173, 216, 230, 255}
 
-    #define YELLOW sfYellow
+    #define YELLOW (sfColor){255, 255, 0, 255}
     #define DARK_YELLOW (sfColor){139, 139, 0, 255}
     #define LIGHT_YELLOW (sfColor){255, 255, 224, 255}
 
-    #define MAGENTA sfMagenta
+    #define MAGENTA (sfColor){255, 0, 255, 255}
     #define DARK_MAGENTA (sfColor){139, 0, 139, 255}
     #define LIGHT_MAGENTA (sfColor){255, 192, 203, 255}
 
-    #define CYAN sfCyan
+    #define CYAN (sfColor){0, 255, 255, 255}
     #define DARK_CYAN (sfColor){0, 139, 139, 255}
     #define LIGHT_CYAN (sfColor){224, 255, 255, 255}
 

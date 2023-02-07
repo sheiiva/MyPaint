@@ -12,6 +12,8 @@
 #include "window.h"
 
 #include "fileButton.h"
+#include "colors.h"
+#include "fonts.h"
 
 static void Scene_draw(SceneClass *this, WindowClass* window)
 {
@@ -40,6 +42,7 @@ static void Scene_ctor(SceneClass *this, __UNUSED__ va_list *args)
     this->_mbuttons = new(ButtonManager, BUTTONNUMBER);
 
     setButton(this->_mbuttons, FILEBUTTON_I, FILEBUTTON_POS, FILEBUTTON_SIZE, FILEBUTTON_DEFAULT_COLOR, FILEBUTTON_HOVER_COLOR, FILEBUTTON_CLICK_COLOR, &FileButton_onClick);
+    setButtonText(getButton(this->_mbuttons, FILEBUTTON_I), FILEBUTTON_TEXT_STRING, FILEBUTTON_TEXT_SIZE, FILEBUTTON_POS, FILEBUTTON_TEXT_DEFAULT_COLOR, FILEBUTTON_TEXT_CLICK_COLOR, FILEBUTTON_TEXT_HOVER_COLOR, FILEBUTTON_TEXT_FONT);
 
     printf("Scene()\n");
 }

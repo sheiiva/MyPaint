@@ -16,6 +16,8 @@
 
     #include "gui_state.h"
     #include "colors.h"
+    #include "fonts.h"
+    #include "text.h"
 
     typedef struct s_WindowClass WindowClass;
 
@@ -35,6 +37,7 @@
 
         /* Methods definitions */
         void (*__draw__)(struct s_TextClass*, WindowClass*);
+
     } TextClass;
 
     extern const Class *Text;

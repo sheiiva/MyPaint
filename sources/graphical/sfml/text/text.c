@@ -33,8 +33,7 @@ static void Text_ctor(TextClass *this, va_list *args)
     setTextColor(this, this->_defaultColor);
 
     // Set font
-    if (!(this->_font = sfFont_createFromFile(va_arg(*args, char*))))
-        raise("Can't create sfFont");
+    this->_font = sfFont_createFromFile(va_arg(*args, char*));
     setTextFont(this, this->_font);
 
     printf("Text()\n");

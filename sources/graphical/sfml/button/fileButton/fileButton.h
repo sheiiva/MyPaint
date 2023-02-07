@@ -16,6 +16,7 @@
     #include "object.h"
 
     #include "colors.h"
+    #include "fonts.h"
 
     typedef struct s_ButtonClass ButtonClass;
     typedef struct s_SystemClass SystemClass;
@@ -24,10 +25,17 @@
 
     #define FILEBUTTON_I    0
 
-    #define FILEBUTTON_POS              (sfVector2f){0, 0}
-    #define FILEBUTTON_SIZE             (sfVector2f){200, 50}
-    #define FILEBUTTON_DEFAULT_COLOR    TRANSPARENT
+    #define FILEBUTTON_POS              (sfVector2f){50, 50}
+    #define FILEBUTTON_SIZE             (sfVector2f){50, 30}
+    #define FILEBUTTON_DEFAULT_COLOR    RED
     #define FILEBUTTON_HOVER_COLOR      GRAY
     #define FILEBUTTON_CLICK_COLOR      DARK_GRAY
+
+    #define FILEBUTTON_TEXT_STRING          "File"
+    #define FILEBUTTON_TEXT_SIZE            20
+    #define FILEBUTTON_TEXT_DEFAULT_COLOR   RED
+    #define FILEBUTTON_TEXT_HOVER_COLOR     DARK_GRAY
+    #define FILEBUTTON_TEXT_CLICK_COLOR     GRAY
+    #define FILEBUTTON_TEXT_FONT            OpenSansRegular
 
 #endif /* !FILEBUTTON_H_ */
