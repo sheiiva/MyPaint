@@ -32,7 +32,7 @@ static sfBool Window_isOpen(WindowClass *this)
 static void Window_ctor(WindowClass *this, __UNUSED__ va_list *args)
 {
     // Initialize internal resources
-    this->_mode = (sfVideoMode){1280, 800, 32};
+    this->_mode = (sfVideoMode){1920, 1080, 32};
     this->_window = sfRenderWindow_create(this->_mode, "Untitled - MyPaint", sfResize | sfClose, sfNone);
     if (!this->_window)
         raise("Cannot create window.");

@@ -37,6 +37,7 @@
         // Object*     texts;
         // Object*     sounds;
         ButtonManagerClass*         _mbuttons;
+        Object*                     _arect;
 
         /* Methods definitions */
         void    (*__draw__)(struct s_SceneClass*, WindowClass*);

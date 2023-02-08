@@ -11,6 +11,7 @@
 #include "system.h"
 #include "window.h"
 
+#include "rect.h"
 #include "fileButton.h"
 #include "helpButton.h"
 #include "colors.h"
@@ -19,16 +20,16 @@
 static void Scene_draw(SceneClass *this, WindowClass* window)
 {
     // Draw the background
-    sfRenderWindow_clear(window->_window, (sfColor){248, 248, 248, 255});
-    // Draw header box
-    // Draw header tool box
+    sfRenderWindow_clear(window->_window, LIGHT_GRAY);
+    for (size_t i = 0; i < len(this->_arect); i++)
+        drawRect(getitem(this->_arect, i), window);
     // Draw canvas
     // Draw texts
     // Draw buttons
     drawButtons(this->_mbuttons, window);
 }
 
-static void Scene_process(__UNUSED__ SceneClass *this, SystemClass *system)
+static void Scene_process(SceneClass *this, SystemClass *system)
 {
     sfTime time = sfClock_getElapsedTime(system->_clock->_clock);
 
@@ -43,8 +44,14 @@ static void Scene_process(__UNUSED__ SceneClass *this, SystemClass *system)
 static void Scene_ctor(SceneClass *this, __UNUSED__ va_list *args)
 {
     // Initialize internal resources
-    this->_mbuttons = new(ButtonManager, BUTTONNUMBER);
 
+    // Rectangle shapes
+    this->_arect = new(Array, 1, Rect,
+        (sfVector2f){0, 0}, (sfVector2f){1920, 50}, WHITE, WHITE, 0
+    );
+
+    // Buttons
+    this->_mbuttons = new(ButtonManager, BUTTONNUMBER);
     // File button
     setButton(this->_mbuttons, FILEBUTTON_I, FILEBUTTON_POS, FILEBUTTON_SIZE, FILEBUTTON_DEFAULT_COLOR, FILEBUTTON_HOVER_COLOR, FILEBUTTON_CLICK_COLOR, &FileButton_onClick);
     setButtonText(getButton(this->_mbuttons, FILEBUTTON_I), FILEBUTTON_TEXT_STRING, FILEBUTTON_TEXT_SIZE, FILEBUTTON_POS, FILEBUTTON_TEXT_DEFAULT_COLOR, FILEBUTTON_TEXT_CLICK_COLOR, FILEBUTTON_TEXT_HOVER_COLOR, FILEBUTTON_TEXT_FONT);
