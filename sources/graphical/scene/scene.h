@@ -34,10 +34,10 @@
 
         /* Special Definition*/
         // Object*     images;s
-        // Object*     texts;
         // Object*     sounds;
         ButtonManagerClass*         _mbuttons;
         Object*                     _arect;
+        Object*                     _texts;
 
         /* Methods definitions */
         void    (*__draw__)(struct s_SceneClass*, WindowClass*);
@@ -51,7 +51,7 @@
     #define processScene(s, sys)    ((SceneClass*)s)->__process__(s, sys)
 
     /* BUTTONS */
-    #define BUTTONNUMBER    2
+    #define BUTTONNUMBER    3
 
     /* IMAGES */
     #define IMAGENUMBER     0

@@ -3,7 +3,7 @@
 ** Array Class definition
 **
 ** Corentin COUTRET-ROZET
-** https://github.com/sheiiva/DuckHunt
+** https://github.com/sheiiva/MyPaint
 **
 */
 

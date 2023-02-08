@@ -25,14 +25,14 @@
 
     #define HELPBUTTON_I    1
 
-    #define HELPBUTTON_POS              (sfVector2f){50, 10}
-    #define HELPBUTTON_SIZE             (sfVector2f){50, 30}
+    #define HELPBUTTON_POS              (sfVector2f){40, 5}
+    #define HELPBUTTON_SIZE             (sfVector2f){40, 30}
     #define HELPBUTTON_DEFAULT_COLOR    TRANSPARENT
     #define HELPBUTTON_HOVER_COLOR      (sfColor){211, 211, 211, 255}
     #define HELPBUTTON_CLICK_COLOR      (sfColor){211, 211, 211, 150}
 
     #define HELPBUTTON_TEXT_STRING          "Help"
-    #define HELPBUTTON_TEXT_SIZE            20
+    #define HELPBUTTON_TEXT_SIZE            15
     #define HELPBUTTON_TEXT_DEFAULT_COLOR   BLACK
     #define HELPBUTTON_TEXT_HOVER_COLOR     BLACK
     #define HELPBUTTON_TEXT_CLICK_COLOR     GRAY

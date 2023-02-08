@@ -3,7 +3,7 @@
 ** Container's structure
 **
 ** Corentin COUTRET-ROZET
-** https://github.com/sheiiva/DuckHunt
+** https://github.com/sheiiva/MyPaint
 **
 */
 

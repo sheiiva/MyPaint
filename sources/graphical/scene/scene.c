@@ -25,6 +25,8 @@ static void Scene_draw(SceneClass *this, WindowClass* window)
         drawRect(getitem(this->_arect, i), window);
     // Draw canvas
     // Draw texts
+    for (size_t i = 0; i < len(this->_texts); i++)
+        drawText(getitem(this->_texts, i), window);
     // Draw buttons
     drawButtons(this->_mbuttons, window);
 }
@@ -46,8 +48,30 @@ static void Scene_ctor(SceneClass *this, __UNUSED__ va_list *args)
     // Initialize internal resources
 
     // Rectangle shapes
-    this->_arect = new(Array, 1, Rect,
-        (sfVector2f){0, 0}, (sfVector2f){1920, 50}, WHITE, WHITE, 0
+    this->_arect = new(Array, 11, Rect,
+        (sfVector2f){0, 0}, (sfVector2f){1920, 40}, WHITE, WHITE, 0., // Taskbar
+        (sfVector2f){0, 40}, (sfVector2f){1920, 100}, WHITE, WHITE, 0., // Toolbar
+        (sfVector2f){50, 200}, (sfVector2f){1080, 720}, WHITE, WHITE, 0., // Canvas
+        // Section separator
+        (sfVector2f){90, 7.5}, (sfVector2f){1, 25}, LIGHT_GRAY, WHITE, 0.,
+        (sfVector2f){0, 40}, (sfVector2f){1920, 1}, LIGHT_GRAY, WHITE, 0., // Toolbar separator
+
+        (sfVector2f){150, 50}, (sfVector2f){1, 80}, LIGHT_GRAY, WHITE, 0., // Clipboard section
+        (sfVector2f){300, 50}, (sfVector2f){1, 80}, LIGHT_GRAY, WHITE, 0., // Image section
+        (sfVector2f){450, 50}, (sfVector2f){1, 80}, LIGHT_GRAY, WHITE, 0., // Tools section
+        (sfVector2f){550, 50}, (sfVector2f){1, 80}, LIGHT_GRAY, WHITE, 0., // Brushes section
+        (sfVector2f){800, 50}, (sfVector2f){1, 80}, LIGHT_GRAY, WHITE, 0., // Shapes section
+        (sfVector2f){900, 50}, (sfVector2f){1, 80}, LIGHT_GRAY, WHITE, 0. // Size section
+    );
+
+    this->_texts = new(Array, 7, Text,
+        "Clipboard", 15, (sfVector2f){50, 110}, BLACK, BLACK, BLACK, OpenSansRegular,
+        "Image", 15, (sfVector2f){200, 110}, BLACK, BLACK, BLACK, OpenSansRegular,
+        "Tools", 15, (sfVector2f){360, 110}, BLACK, BLACK, BLACK, OpenSansRegular,
+        "Brushes", 15, (sfVector2f){475, 110}, BLACK, BLACK, BLACK, OpenSansRegular,
+        "Shapes", 15, (sfVector2f){650, 110}, BLACK, BLACK, BLACK, OpenSansRegular,
+        "Size", 15, (sfVector2f){840, 110}, BLACK, BLACK, BLACK, OpenSansRegular,
+        "Colours", 15, (sfVector2f){1000, 110}, BLACK, BLACK, BLACK, OpenSansRegular
     );
 
     // Buttons
@@ -58,6 +82,11 @@ static void Scene_ctor(SceneClass *this, __UNUSED__ va_list *args)
     // Help button
     setButton(this->_mbuttons, HELPBUTTON_I, HELPBUTTON_POS, HELPBUTTON_SIZE, HELPBUTTON_DEFAULT_COLOR, HELPBUTTON_HOVER_COLOR, HELPBUTTON_CLICK_COLOR, &HelpButton_onClick);
     setButtonText(getButton(this->_mbuttons, HELPBUTTON_I), HELPBUTTON_TEXT_STRING, HELPBUTTON_TEXT_SIZE, HELPBUTTON_POS, HELPBUTTON_TEXT_DEFAULT_COLOR, HELPBUTTON_TEXT_CLICK_COLOR, HELPBUTTON_TEXT_HOVER_COLOR, HELPBUTTON_TEXT_FONT);
+
+    // View button
+    setButton(this->_mbuttons, 2, (sfVector2f){100, 5}, HELPBUTTON_SIZE, HELPBUTTON_DEFAULT_COLOR, HELPBUTTON_HOVER_COLOR, HELPBUTTON_CLICK_COLOR, &HelpButton_onClick);
+    setButtonText(getButton(this->_mbuttons, 2), "View", HELPBUTTON_TEXT_SIZE, HELPBUTTON_POS, HELPBUTTON_TEXT_DEFAULT_COLOR, HELPBUTTON_TEXT_CLICK_COLOR, HELPBUTTON_TEXT_HOVER_COLOR, HELPBUTTON_TEXT_FONT);
+
 
     printf("Scene()\n");
 }

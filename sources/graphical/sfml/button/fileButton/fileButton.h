@@ -25,14 +25,14 @@
 
     #define FILEBUTTON_I    0
 
-    #define FILEBUTTON_POS              (sfVector2f){0, 10}
-    #define FILEBUTTON_SIZE             (sfVector2f){50, 30}
+    #define FILEBUTTON_POS              (sfVector2f){0, 5}
+    #define FILEBUTTON_SIZE             (sfVector2f){40, 30}
     #define FILEBUTTON_DEFAULT_COLOR    TRANSPARENT
     #define FILEBUTTON_HOVER_COLOR      (sfColor){211, 211, 211, 255}
     #define FILEBUTTON_CLICK_COLOR      (sfColor){211, 211, 211, 150}
 
     #define FILEBUTTON_TEXT_STRING          "File"
-    #define FILEBUTTON_TEXT_SIZE            20
+    #define FILEBUTTON_TEXT_SIZE            15
     #define FILEBUTTON_TEXT_DEFAULT_COLOR   BLACK
     #define FILEBUTTON_TEXT_HOVER_COLOR     BLACK
     #define FILEBUTTON_TEXT_CLICK_COLOR     GRAY
