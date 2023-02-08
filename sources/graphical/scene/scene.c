@@ -57,15 +57,15 @@ static void Scene_ctor(SceneClass *this, __UNUSED__ va_list *args)
     // Help button
     setButton(this->_mbuttons, HELPBUTTON_I, HELPBUTTON_POS, HELPBUTTON_SIZE, HELPBUTTON_DEFAULT_COLOR, HELPBUTTON_HOVER_COLOR, HELPBUTTON_CLICK_COLOR, &HelpButton_onClick);
     setButtonText(getButton(this->_mbuttons, HELPBUTTON_I), HELPBUTTON_TEXT_STRING, HELPBUTTON_TEXT_SIZE, HELPBUTTON_POS, HELPBUTTON_TEXT_DEFAULT_COLOR, HELPBUTTON_TEXT_CLICK_COLOR, HELPBUTTON_TEXT_HOVER_COLOR, HELPBUTTON_TEXT_FONT);
-
     // View button
     setButton(this->_mbuttons, VIEWBUTTON_I, VIEWBUTTON_POS, VIEWBUTTON_SIZE, VIEWBUTTON_DEFAULT_COLOR, VIEWBUTTON_HOVER_COLOR, VIEWBUTTON_CLICK_COLOR, &ViewButton_onClick);
     setButtonText(getButton(this->_mbuttons, VIEWBUTTON_I), VIEWBUTTON_TEXT_STRING, VIEWBUTTON_TEXT_SIZE, VIEWBUTTON_POS, VIEWBUTTON_TEXT_DEFAULT_COLOR, VIEWBUTTON_TEXT_CLICK_COLOR, VIEWBUTTON_TEXT_HOVER_COLOR, VIEWBUTTON_TEXT_FONT);
 
     // Rectangle shapes
-    this->_arect = new(Array, 10, Rect,
-        (sfVector2f){0, 0}, (sfVector2f){1920, 40}, WHITE, WHITE, 0., // Taskbar
-        (sfVector2f){0, 40}, (sfVector2f){1920, 100}, WHITE, WHITE, 0., // Toolbar
+    this->_arect = new(Array, 11, Rect,
+        (sfVector2f){0, 0}, (sfVector2f){1920, 40}, WHITE, WHITE, 0., // Task bar
+        (sfVector2f){0, 40}, (sfVector2f){1920, 100}, WHITE, WHITE, 0., // Tool bar
+        (sfVector2f){0, 1065}, (sfVector2f){1920, 30}, WHITE, WHITE, 0., // Info bar
         // Section separator
         (sfVector2f){90, 7.5}, (sfVector2f){1, 25}, LIGHT_GRAY, WHITE, 0.,
         (sfVector2f){0, 40}, (sfVector2f){1920, 1}, LIGHT_GRAY, WHITE, 0., // Toolbar separator
@@ -78,14 +78,15 @@ static void Scene_ctor(SceneClass *this, __UNUSED__ va_list *args)
         (sfVector2f){900, 50}, (sfVector2f){1, 80}, LIGHT_GRAY, WHITE, 0. // Size section
     );
 
-    this->_texts = new(Array, 7, Text,
+    this->_texts = new(Array, 8, Text,
         "Clipboard", 15, (sfVector2f){50, 110}, BLACK, BLACK, BLACK, OpenSansRegular,
         "Image", 15, (sfVector2f){200, 110}, BLACK, BLACK, BLACK, OpenSansRegular,
         "Tools", 15, (sfVector2f){360, 110}, BLACK, BLACK, BLACK, OpenSansRegular,
         "Brushes", 15, (sfVector2f){475, 110}, BLACK, BLACK, BLACK, OpenSansRegular,
         "Shapes", 15, (sfVector2f){650, 110}, BLACK, BLACK, BLACK, OpenSansRegular,
         "Size", 15, (sfVector2f){840, 110}, BLACK, BLACK, BLACK, OpenSansRegular,
-        "Colours", 15, (sfVector2f){1000, 110}, BLACK, BLACK, BLACK, OpenSansRegular
+        "Colours", 15, (sfVector2f){1000, 110}, BLACK, BLACK, BLACK, OpenSansRegular,
+        "1080 x 720px", 10, (sfVector2f){10, 1065}, BLACK, BLACK, BLACK, OpenSansRegular
     );
 
     this->_canva = new(Rect, (sfVector2f){50, 200}, (sfVector2f){1080, 720}, WHITE, WHITE, 0. );
