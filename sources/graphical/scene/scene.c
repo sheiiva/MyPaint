@@ -24,6 +24,7 @@ static void Scene_draw(SceneClass *this, WindowClass* window)
     for (size_t i = 0; i < len(this->_arect); i++)
         drawRect(getitem(this->_arect, i), window);
     // Draw canvas
+    drawRect(this->_canva, window);
     // Draw texts
     for (size_t i = 0; i < len(this->_texts); i++)
         drawText(getitem(this->_texts, i), window);
@@ -47,11 +48,23 @@ static void Scene_ctor(SceneClass *this, __UNUSED__ va_list *args)
 {
     // Initialize internal resources
 
+    // Buttons
+    this->_mbuttons = new(ButtonManager, BUTTONNUMBER);
+    // File button
+    setButton(this->_mbuttons, FILEBUTTON_I, FILEBUTTON_POS, FILEBUTTON_SIZE, FILEBUTTON_DEFAULT_COLOR, FILEBUTTON_HOVER_COLOR, FILEBUTTON_CLICK_COLOR, &FileButton_onClick);
+    setButtonText(getButton(this->_mbuttons, FILEBUTTON_I), FILEBUTTON_TEXT_STRING, FILEBUTTON_TEXT_SIZE, FILEBUTTON_POS, FILEBUTTON_TEXT_DEFAULT_COLOR, FILEBUTTON_TEXT_CLICK_COLOR, FILEBUTTON_TEXT_HOVER_COLOR, FILEBUTTON_TEXT_FONT);
+    // Help button
+    setButton(this->_mbuttons, HELPBUTTON_I, HELPBUTTON_POS, HELPBUTTON_SIZE, HELPBUTTON_DEFAULT_COLOR, HELPBUTTON_HOVER_COLOR, HELPBUTTON_CLICK_COLOR, &HelpButton_onClick);
+    setButtonText(getButton(this->_mbuttons, HELPBUTTON_I), HELPBUTTON_TEXT_STRING, HELPBUTTON_TEXT_SIZE, HELPBUTTON_POS, HELPBUTTON_TEXT_DEFAULT_COLOR, HELPBUTTON_TEXT_CLICK_COLOR, HELPBUTTON_TEXT_HOVER_COLOR, HELPBUTTON_TEXT_FONT);
+
+    // View button
+    setButton(this->_mbuttons, 2, (sfVector2f){100, 5}, HELPBUTTON_SIZE, HELPBUTTON_DEFAULT_COLOR, HELPBUTTON_HOVER_COLOR, HELPBUTTON_CLICK_COLOR, &HelpButton_onClick);
+    setButtonText(getButton(this->_mbuttons, 2), "View", HELPBUTTON_TEXT_SIZE, HELPBUTTON_POS, HELPBUTTON_TEXT_DEFAULT_COLOR, HELPBUTTON_TEXT_CLICK_COLOR, HELPBUTTON_TEXT_HOVER_COLOR, HELPBUTTON_TEXT_FONT);
+
     // Rectangle shapes
-    this->_arect = new(Array, 11, Rect,
+    this->_arect = new(Array, 10, Rect,
         (sfVector2f){0, 0}, (sfVector2f){1920, 40}, WHITE, WHITE, 0., // Taskbar
         (sfVector2f){0, 40}, (sfVector2f){1920, 100}, WHITE, WHITE, 0., // Toolbar
-        (sfVector2f){50, 200}, (sfVector2f){1080, 720}, WHITE, WHITE, 0., // Canvas
         // Section separator
         (sfVector2f){90, 7.5}, (sfVector2f){1, 25}, LIGHT_GRAY, WHITE, 0.,
         (sfVector2f){0, 40}, (sfVector2f){1920, 1}, LIGHT_GRAY, WHITE, 0., // Toolbar separator
@@ -74,19 +87,7 @@ static void Scene_ctor(SceneClass *this, __UNUSED__ va_list *args)
         "Colours", 15, (sfVector2f){1000, 110}, BLACK, BLACK, BLACK, OpenSansRegular
     );
 
-    // Buttons
-    this->_mbuttons = new(ButtonManager, BUTTONNUMBER);
-    // File button
-    setButton(this->_mbuttons, FILEBUTTON_I, FILEBUTTON_POS, FILEBUTTON_SIZE, FILEBUTTON_DEFAULT_COLOR, FILEBUTTON_HOVER_COLOR, FILEBUTTON_CLICK_COLOR, &FileButton_onClick);
-    setButtonText(getButton(this->_mbuttons, FILEBUTTON_I), FILEBUTTON_TEXT_STRING, FILEBUTTON_TEXT_SIZE, FILEBUTTON_POS, FILEBUTTON_TEXT_DEFAULT_COLOR, FILEBUTTON_TEXT_CLICK_COLOR, FILEBUTTON_TEXT_HOVER_COLOR, FILEBUTTON_TEXT_FONT);
-    // Help button
-    setButton(this->_mbuttons, HELPBUTTON_I, HELPBUTTON_POS, HELPBUTTON_SIZE, HELPBUTTON_DEFAULT_COLOR, HELPBUTTON_HOVER_COLOR, HELPBUTTON_CLICK_COLOR, &HelpButton_onClick);
-    setButtonText(getButton(this->_mbuttons, HELPBUTTON_I), HELPBUTTON_TEXT_STRING, HELPBUTTON_TEXT_SIZE, HELPBUTTON_POS, HELPBUTTON_TEXT_DEFAULT_COLOR, HELPBUTTON_TEXT_CLICK_COLOR, HELPBUTTON_TEXT_HOVER_COLOR, HELPBUTTON_TEXT_FONT);
-
-    // View button
-    setButton(this->_mbuttons, 2, (sfVector2f){100, 5}, HELPBUTTON_SIZE, HELPBUTTON_DEFAULT_COLOR, HELPBUTTON_HOVER_COLOR, HELPBUTTON_CLICK_COLOR, &HelpButton_onClick);
-    setButtonText(getButton(this->_mbuttons, 2), "View", HELPBUTTON_TEXT_SIZE, HELPBUTTON_POS, HELPBUTTON_TEXT_DEFAULT_COLOR, HELPBUTTON_TEXT_CLICK_COLOR, HELPBUTTON_TEXT_HOVER_COLOR, HELPBUTTON_TEXT_FONT);
-
+    this->_canva = new(Rect, (sfVector2f){50, 200}, (sfVector2f){1080, 720}, WHITE, WHITE, 0. );
 
     printf("Scene()\n");
 }
