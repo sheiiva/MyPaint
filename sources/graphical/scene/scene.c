@@ -14,6 +14,7 @@
 #include "rect.h"
 #include "fileButton.h"
 #include "helpButton.h"
+#include "viewButton.h"
 #include "colors.h"
 #include "fonts.h"
 
@@ -58,8 +59,8 @@ static void Scene_ctor(SceneClass *this, __UNUSED__ va_list *args)
     setButtonText(getButton(this->_mbuttons, HELPBUTTON_I), HELPBUTTON_TEXT_STRING, HELPBUTTON_TEXT_SIZE, HELPBUTTON_POS, HELPBUTTON_TEXT_DEFAULT_COLOR, HELPBUTTON_TEXT_CLICK_COLOR, HELPBUTTON_TEXT_HOVER_COLOR, HELPBUTTON_TEXT_FONT);
 
     // View button
-    setButton(this->_mbuttons, 2, (sfVector2f){100, 5}, HELPBUTTON_SIZE, HELPBUTTON_DEFAULT_COLOR, HELPBUTTON_HOVER_COLOR, HELPBUTTON_CLICK_COLOR, &HelpButton_onClick);
-    setButtonText(getButton(this->_mbuttons, 2), "View", HELPBUTTON_TEXT_SIZE, HELPBUTTON_POS, HELPBUTTON_TEXT_DEFAULT_COLOR, HELPBUTTON_TEXT_CLICK_COLOR, HELPBUTTON_TEXT_HOVER_COLOR, HELPBUTTON_TEXT_FONT);
+    setButton(this->_mbuttons, VIEWBUTTON_I, VIEWBUTTON_POS, VIEWBUTTON_SIZE, VIEWBUTTON_DEFAULT_COLOR, VIEWBUTTON_HOVER_COLOR, VIEWBUTTON_CLICK_COLOR, &ViewButton_onClick);
+    setButtonText(getButton(this->_mbuttons, VIEWBUTTON_I), VIEWBUTTON_TEXT_STRING, VIEWBUTTON_TEXT_SIZE, VIEWBUTTON_POS, VIEWBUTTON_TEXT_DEFAULT_COLOR, VIEWBUTTON_TEXT_CLICK_COLOR, VIEWBUTTON_TEXT_HOVER_COLOR, VIEWBUTTON_TEXT_FONT);
 
     // Rectangle shapes
     this->_arect = new(Array, 10, Rect,
