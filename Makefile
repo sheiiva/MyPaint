@@ -6,9 +6,9 @@
 ##
 ##
 
-CC			=	gcc
+CC			=	clang
 LD			=	$(CC)
-PRINT		=	@echo -e
+PRINT		=	@echo
 RM          =   @rm -f
 
 INCLUDES	=	$(shell find . -name '*.h' | grep -oP ".*/" | uniq | awk '{print "-I"$$0}')
@@ -17,15 +17,19 @@ SOURCES		=	$(shell find . -name '*.c')
 
 OBJ 		= 	$(SOURCES:.c=.o)
 
-override CFLAGS 	+=	-g3 -W -Wall -Wextra $(INCLUDES)
+%.o: %.c
+	$(PRINT) "\n> COMPILE $<\n"
+	$(CC) $(CFLAGS) -c $< -o $@
+
+override CFLAGS 	+=	-g3 -W -Wall -Wextra -Werror $(INCLUDES)
 override LDLIBS 	+=	-lm -lcsfml-audio -lcsfml-graphics -lcsfml-system -lcsfml-window
 
 NAME 		= 	$(ROOT_PATH)MyPaint
 
 $(NAME): $(OBJ)
-	$(PRINT) "\n------->\tPRECOMPILED SRC DEPENDENCIES.\n\nLET'S LINK IT ALL:\n"
+	$(PRINT) "\n------->\tCOMPILED SRC DEPENDENCIES.\n\nLET'S LINK IT ALL:\n"
 	$(LD) $(CFLAGS) $^ $(LDFLAGS) $(LDLIBS) -o $@
-	$(PRINT) "\n------->\tCONGRATS !\n"
+	$(PRINT) "\n------->\tEXEC [ $@ ]\n"
 
 all: $(NAME)
 
