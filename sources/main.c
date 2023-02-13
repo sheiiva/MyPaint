@@ -11,14 +11,9 @@
 #include "new.h"
 #include "System.h"
 
-void prout(__UNUSED__ SystemClass *system)
-{
-    printf("prout\n");
-}
-
 int main(void)
 {
-    Object *system = new(System, &prout);
+    Object *system = new(System, "config/system.mpt");
 
     run(system);
     delete(system);

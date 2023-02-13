@@ -1,0 +1,30 @@
+/* File: MainScene.h
+**
+** Description: MainScene class init definition
+**
+** 2023, February 10
+** Author: Corentin COUTRET-ROZET (corentin.rozet@epitech.eu)
+**
+** Copyright 2023, Corentin COUTRET-ROZET
+*/
+
+#ifndef MAINSCENE_H_
+    #define MAINSCENE_H_
+
+    #include "CSFMLTypes.h"
+
+    void MainScene_init(SystemClass*);
+
+    /* BUTTONS */
+    #define BUTTONNUMBER    3
+
+    /* IMAGES */
+    #define IMAGENUMBER     0
+
+    /* TEXTS */
+    #define TEXTNUMBER      0
+
+    /* SOUNDS */
+    #define SOUNDNUMBER     0
+
+#endif /* !MAINSCENE_H_ */

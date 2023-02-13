@@ -14,32 +14,41 @@
 #include "Button.h"
 #include "Text.h"
 #include "Scene.h"
+#include "EventManager.h"
 
 static void Scene_draw(SceneClass *this, WindowClass* window)
 {
     // Draw the background
     clearWindow(window);
-    for (size_t i = 0; i < len(this->_rects); i++)
+    for (size_t i = 0; this->_rects && i < len(this->_rects); i++)
         drawRect(getitem(this->_rects, i), window);
-    for (size_t i = 0; i < len(this->_buttons); i++)
+    for (size_t i = 0; this->_buttons && i < len(this->_buttons); i++)
         drawButton(getitem(this->_buttons, i), window);
-    for (size_t i = 0; i < len(this->_texts); i++)
+    for (size_t i = 0; this->_texts && i < len(this->_texts); i++)
         drawText(getitem(this->_texts, i), window);
 }
 
 static void Scene_process(SceneClass *this, SystemClass *system)
 {
     // Process buttons
-    for (size_t i = 0; i < len(this->_buttons); i++)
+    for (size_t i = 0; this->_buttons && i < len(this->_buttons); i++)
         processButton(getitem(this->_buttons, i), system);
 }
 
-static void Scene_ctor(SceneClass *this, va_list *args)
+static void Scene_init(__UNUSED__ SceneClass *this, __UNUSED__ char const *path)
+{
+    // Initialize the scene
+    this->_rects = new(Array, 0, sizeof(RectangleClass*));
+    this->_buttons = new(Array, 0, sizeof(ButtonClass*));
+    this->_texts = new(Array, 0, sizeof(TextClass*));
+    this->_eventManager = new(EventManager, 0);
+
+    // Parse from file
+}
+
+static void Scene_ctor(__UNUSED__ SceneClass *this, __UNUSED__ va_list *args)
 {
     // Initialize internal resources
-
-    // Call the initScene function
-    (*va_arg(*args, initScene_t))(this);
 
     printf("Scene()\n");
 }
@@ -72,6 +81,7 @@ static const SceneClass _description = {
     /* Methods definitions */
     .__draw__ = &Scene_draw,
     .__process__ = &Scene_process,
+    .__init__ = &Scene_init
 };
 
 const Class *Scene = (const Class *)&_description;

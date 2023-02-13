@@ -16,7 +16,7 @@
 static void EventManager_handleEvents(EventManagerClass *this, SystemClass *system)
 {
     while (sfRenderWindow_pollEvent(system->_window->_window, &(this->_event))) {
-        for (size_t i = 0; i < len(this->_eventArray); i++)
+        for (size_t i = 0; this->_eventArray && i < len(this->_eventArray); i++)
             runEvent(getEvent(this, i), this->_event, system);
     }
 }

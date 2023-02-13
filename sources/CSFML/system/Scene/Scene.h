@@ -21,8 +21,6 @@
 
     #include "CSFMLTypes.h"
 
-    typedef void (*initScene_t)(SceneClass*);
-
     typedef struct s_SceneClass {
 
         /* Inheritance */
@@ -35,9 +33,13 @@
         // Object*     _images;
         // Object*     _sounds;
 
+        EventManagerClass*  _eventManager;
+
         /* Methods definitions */
         void    (*__draw__)(struct s_SceneClass*, WindowClass*);
         void    (*__process__)(struct s_SceneClass*, SystemClass*);
+
+        void    (*__init__)(struct s_SceneClass*, char const*);
 
     } SceneClass;
 
@@ -45,5 +47,7 @@
 
     #define drawScene(s, w)         ((SceneClass*)s)->__draw__(s, w)
     #define processScene(s, sys)    ((SceneClass*)s)->__process__(s, sys)
+
+    #define initScene(s, p)         ((SceneClass*)s)->__init__(s, p)
 
 #endif /* !SCENE_H_ */

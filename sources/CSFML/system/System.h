@@ -28,8 +28,6 @@
         ClockClass*         _clock;
         int                 _fps;
 
-        EventManagerClass*  _eventManager;
-
         ssize_t             _currentScene; // -1 : Exit
         Object*             _scenes;
 

@@ -1,0 +1,7 @@
+MyPaint
+1920        # Width
+1080        # Height
+32          # BPP
+60          # FPS
+1           # Scene Number
+config/MainScene.mpt

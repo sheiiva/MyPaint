@@ -10,11 +10,30 @@
 
 #include "File.h"
 
+static char *File_read(FileClass *this)
+{
+    if (this->_fd == -1)
+        raise("File not opened.");
+
+    char *content = malloc(sizeof(char) * (this->_size + 1));
+    if (!content)
+        raise("Can't malloc.");
+    memset(content, 0, this->_size + 1);
+
+    if (read(this->_fd, content, this->_size) == -1)
+        raise("Can't read file.");
+
+    return (content);
+}
+
 static char *File_readLine(FileClass *this)
 {
     char *line = NULL;
     size_t size = 0;
     ssize_t len = 0;
+
+    if (this->_fstream == NULL)
+        raise("File not opened.");
 
     if ((len = getline(&line, &size, this->_fstream)) == -1)
         raise("Can't read line.");
@@ -22,25 +41,13 @@ static char *File_readLine(FileClass *this)
     return (line);
 }
 
-static char *File_read(FileClass *this)
+static int File_readInt(FileClass *this)
 {
-    char *content = malloc(sizeof(char) * (this->_size + 1));
+    char *line = readLine(this);
+    int value = atoi(line);
 
-    if (!content)
-        raise("Can't malloc.");
-
-    memset(content, 0, this->_size + 1);
-    if (read(this->_fd, content, this->_size) == -1)
-        raise("Can't read file.");
-
-    return (content);
-}
-
-static void File_fopen(FileClass *this)
-{
-    this->_fstream = fopen(this->_path, "r");
-    if (this->_fstream == NULL)
-        raise("Can't open file.");
+    free(line);
+    return (value);
 }
 
 static void File_open(FileClass *this)
@@ -52,6 +59,13 @@ static void File_open(FileClass *this)
     // Get file size
     struct stat info;
     this->_size = info.st_size;
+}
+
+static void File_fopen(FileClass *this)
+{
+    this->_fstream = fopen(this->_path, "r");
+    if (this->_fstream == NULL)
+        raise("Can't open file.");
 }
 
 static void File_ctor(FileClass *this, va_list *args)
@@ -97,7 +111,8 @@ static const FileClass _description = {
     .__open__ = &File_open,
     .__fopen__ = &File_fopen,
     .__read__ = &File_read,
-    .__readLine__ = &File_readLine
+    .__readLine__ = &File_readLine,
+    .__readInt__ = &File_readInt
 };
 
 const Class *File = (const Class *)&_description;

@@ -35,13 +35,19 @@
         /* Methods definitions*/
         void    (*__open__)(struct s_FileClass*);
         void    (*__fopen__)(struct s_FileClass*);
+
         char*   (*__read__)(struct s_FileClass*);
         char*   (*__readLine__)(struct s_FileClass*);
+        int     (*__readInt__)(struct s_FileClass*);
     } FileClass;
 
     extern const Class *File;
 
+    #define openFile(f)     ((FileClass*)f)->__open__(f)
+    #define fopenFile(f)    ((FileClass*)f)->__fopen__(f)
+
     #define readFile(f)     ((FileClass*)f)->__read__(f)
     #define readLine(f)     ((FileClass*)f)->__readLine__(f)
+    #define readInt(f)      ((FileClass*)f)->__readInt__(f)
 
 #endif /* !FILE_H_ */
