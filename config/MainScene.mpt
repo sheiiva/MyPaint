@@ -5,14 +5,14 @@
 .text
 8
 .objects
-button;0;5;40;30;TRANSPARENT;211;211;211;255;211;211;211;150;FileButton_onClick
-rectangle;0;0;1920;40;RED;WHITE;0.
-rectangle;0;40;1920;100;WHITE;WHITE;0.
-text;Clipboard;15;50;110;BLACK;OpenSansRegular
-text;Image;15;200;110;BLACK;OpenSansRegular
-text;Tools;15;360;110;BLACK;OpenSansRegular
-text;Brushes;15;475;110;BLACK;OpenSansRegular
-text;Shapes;15;650;110;BLACK;OpenSansRegular
-text;Size;15;840;110;BLACK;OpenSansRegular
-text;Colours;15;1000;110;BLACK;OpenSansRegular
-text;1080 x 720px;10;10;1065;BLACK;OpenSansRegular
+button;0;5;40;30;transparent;211;211;211;255;211;211;211;150;FileButton_onClick
+rectangle;0;0;1920;40;white;white;0.
+rectangle;0;40;1920;100;white;white;0.
+text;Clipboard;15;50;110;black;OpenSansRegular
+text;Image;15;200;110;black;OpenSansRegular
+text;Tools;15;360;110;black;OpenSansRegular
+text;Brushes;15;475;110;black;OpenSansRegular
+text;Shapes;15;650;110;black;OpenSansRegular
+text;Size;15;840;110;black;OpenSansRegular
+text;Colours;15;1000;110;black;OpenSansRegular
+text;1080 x 720px;10;10;1065;black;OpenSansRegular
