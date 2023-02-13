@@ -33,8 +33,10 @@
         FILE*           _fstream;
 
         /* Methods definitions*/
-        char* (*__read__)(struct s_FileClass*);
-        char* (*__readLine__)(struct s_FileClass*);
+        void    (*__open__)(struct s_FileClass*);
+        void    (*__fopen__)(struct s_FileClass*);
+        char*   (*__read__)(struct s_FileClass*);
+        char*   (*__readLine__)(struct s_FileClass*);
     } FileClass;
 
     extern const Class *File;

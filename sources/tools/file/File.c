@@ -94,7 +94,10 @@ static const FileClass _description = {
     ._fstream = NULL,
     ._fd = -1,
     /* Methods definitions */
-    .__read__ = &File_read
+    .__open__ = &File_open,
+    .__fopen__ = &File_fopen,
+    .__read__ = &File_read,
+    .__readLine__ = &File_readLine
 };
 
 const Class *File = (const Class *)&_description;
