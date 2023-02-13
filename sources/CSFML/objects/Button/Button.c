@@ -97,14 +97,24 @@ static void Button_setText(ButtonClass *this, ...)
     setTextPosition(this->_text, newPos);
 }
 
-static void Button_ctor(ButtonClass *this, va_list *args)
+static void Button_set(ButtonClass *this, ...)
 {
-    // Initialize internal resources
-    this->_rectangle = va_new(Rectangle, args);
+    va_list args;
+
+    va_start(args, this);
+    this->_rectangle = va_new(Rectangle, &args);
+
+    printf("Rect created\n");
 
     this->_colors[DEFAULT] = getRectFillColor(this->_rectangle);
-    this->_colors[HOVER] = va_arg(*args, sfColor);
-    this->_colors[CLICKED] = va_arg(*args, sfColor);
+    this->_colors[HOVER] = va_arg(args, sfColor);
+    this->_colors[CLICKED] = va_arg(args, sfColor);
+    va_end(args);
+}
+
+static void Button_ctor(__UNUSED__ ButtonClass *this, __UNUSED__ va_list *args)
+{
+    // Initialize internal resources
 
     printf("Button()\n");
 }
@@ -139,6 +149,7 @@ static const ButtonClass _description = {
     ._text = NULL,
     ._state = DEFAULT,
     /* Methods definitions */
+    .__set__ = &Button_set,
     .__draw__ = &Button_draw,
     .__process__ = &Button_processButton,
     .__updateColors__ = &Button_updateColors,

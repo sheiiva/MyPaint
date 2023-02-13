@@ -36,7 +36,15 @@ static char *File_readLine(FileClass *this)
         raise("File not opened.");
 
     if ((len = getline(&line, &size, this->_fstream)) == -1)
-        raise("Can't read line.");
+        return NULL;
+
+    // Remove trailing newline
+    for (int i = 0; i < len; i++) {
+        if (line[i] == '\n' || line[i] == '\r') {
+            line[i] = '\0';
+            break;
+        }
+    }
 
     return (line);
 }

@@ -10,17 +10,24 @@
 
 #include "Rectangle.h"
 
-static void Rectangle_ctor(RectangleClass *this, va_list *args)
+static void Rectangle_set(RectangleClass *this, ...)
+{
+    va_list args;
+
+    va_start(args, this);
+    setRectPosition(this, va_arg(args, sfVector2f));
+    setRectSize(this, va_arg(args, sfVector2f));
+    setRectFillColor(this, va_arg(args, sfColor));
+    setRectOutlineThickness(this, va_arg(args, double));
+    setRectOutlineColor(this, va_arg(args, sfColor));
+    va_end(args);
+}
+
+static void Rectangle_ctor(RectangleClass *this, __UNUSED__ va_list *args)
 {
     // Initialize internal resources
     if (!(this->_shape = sfRectangleShape_create()))
         raise("Can't create sfRectangleShape");
-
-    setRectPosition(this, va_arg(*args, sfVector2f));
-    setRectSize(this, va_arg(*args, sfVector2f));
-    setRectFillColor(this, va_arg(*args, sfColor));
-    setRectOutlineThickness(this, va_arg(*args, double));
-    setRectOutlineColor(this, va_arg(*args, sfColor));
 
     printf("Rect()\n");
 }
@@ -50,6 +57,8 @@ static const RectangleClass _description = {
         .__lt__ = NULL
     },
     ._shape = NULL,
+    // Methods
+    .__set__ = &Rectangle_set
 };
 
 const Class *Rectangle = (const Class *)&_description;

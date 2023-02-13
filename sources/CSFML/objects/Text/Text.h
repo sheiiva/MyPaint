@@ -27,9 +27,14 @@
         sfText*         _text;
         sfFont*         _font;
 
+        /* Methods Definition */
+        void (*__set__)(struct s_TextClass*, ...);
+
     } TextClass;
 
     extern const Class *Text;
+
+    #define setText(t, ...)                 ((TextClass*)t)->__set__(t, __VA_ARGS__)
 
     #define drawText(t, w)                  sfRenderWindow_drawText(((WindowClass*)w)->_window, ((TextClass*)t)->_text, NULL);
 

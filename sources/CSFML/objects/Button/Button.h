@@ -34,6 +34,8 @@
         sfColor         _textColors[3];
 
         /* Methods Pointers*/
+        void   (*__set__)(struct s_ButtonClass*, ...);
+
         void    (*__draw__)(struct s_ButtonClass*, WindowClass*);
         void    (*__process__)(struct s_ButtonClass*, SystemClass*);
 
@@ -51,6 +53,8 @@
     } ButtonClass;
 
     extern const Class *Button;
+
+    #define setButton(b, ...)               ((ButtonClass*)b)->__set__(b, __VA_ARGS__)
 
     #define drawButton(b, w)                ((ButtonClass*)b)->__draw__(b, w)
     #define processButton(b, s)             ((ButtonClass*)b)->__process__(b, s)

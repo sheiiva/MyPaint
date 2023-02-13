@@ -15,6 +15,10 @@
 #include "Text.h"
 #include "Scene.h"
 #include "EventManager.h"
+#include "File.h"
+
+#include "colors.h"
+#include "fonts.h"
 
 static void Scene_draw(SceneClass *this, WindowClass* window)
 {
@@ -35,15 +39,88 @@ static void Scene_process(SceneClass *this, SystemClass *system)
         processButton(getitem(this->_buttons, i), system);
 }
 
-static void Scene_init(__UNUSED__ SceneClass *this, __UNUSED__ char const *path)
+size_t count_n(char const *str, char c)
 {
-    // Initialize the scene
-    this->_rects = new(Array, 0, sizeof(RectangleClass*));
-    this->_buttons = new(Array, 0, sizeof(ButtonClass*));
-    this->_texts = new(Array, 0, sizeof(TextClass*));
+    size_t count = 0;
+
+    for (size_t i = 0; str[i]; i++) {
+        if (str[i] == c)
+            count++;
+    }
+    return (count);
+}
+
+char **strtowordarray(char *str, char *delim)
+{
+    char *token = strtok(str, delim);
+    char **ret = malloc(sizeof(char *));
+    size_t i = 0;
+
+    while (token != NULL) {
+        ret = realloc(ret, sizeof(char *) * (i + 2));
+        ret[i++] = strdup(token);
+        token = strtok(NULL, delim);
+    }
+    ret[i] = NULL;
+    return (ret);
+}
+
+void free_strtab(char **tab)
+{
+    for (size_t i = 0; tab[i]; i++)
+        free(tab[i]);
+    free(tab);
+}
+
+static void Scene_init(SceneClass *this, char const *path)
+{
+    char *info = NULL;
+    size_t iButton = 0;
+    size_t iRect = 0;
+    size_t iText = 0;
+    FileClass *file = new(File, path);
+
+    fopenFile(file);
+    while ((info = readLine(file))) {
+        if (!strcmp(info, ".button"))
+            this->_buttons = new(Array, readInt(file), Button);
+        else if (!strcmp(info, ".rectangle"))
+            this->_rects = new(Array, readInt(file), Rectangle);
+        else if (!strcmp(info, ".text"))
+            this->_texts = new(Array, readInt(file), Text);
+        else if (!strcmp(info, ".objects"))
+            break;
+    }
+    while ((info = readLine(file))) {
+        // Set value
+        char **tab = strtowordarray(info, ";");
+
+        if (strcmp(tab[0], "text") == 0) {
+            setText(getitem(this->_texts, iText),
+                                            tab[1], atoi(tab[2]),
+                                            (sfVector2f){atof(tab[3]), atof(tab[4])},
+                                            GET_COLOR(tab[5]), GET_FONT(tab[6]));
+            iText++;
+        } else if (strcmp(tab[0], "rectangle") == 0) {
+            setRect(getitem(this->_rects, iRect),
+                                            (sfVector2f){atof(tab[1]), atof(tab[2])},
+                                            (sfVector2f){atof(tab[3]), atof(tab[4])},
+                                            GET_COLOR(tab[5]), atoi(tab[6]), GET_COLOR(tab[7]));
+            iRect++;
+        } else if (strcmp(tab[0], "button") == 0) {
+            setButton(getitem(this->_buttons, iButton),
+                                            (sfVector2f){atof(tab[1]), atof(tab[2])},
+                                            (sfVector2f){atof(tab[3]), atof(tab[4])},
+                                            GET_COLOR(tab[5]), atoi(tab[6]), GET_COLOR(tab[7]),
+                                            GET_COLOR(tab[8]), GET_COLOR(tab[9]));
+            iButton++;
+        }
+        free_strtab(tab);
+    }
+
     this->_eventManager = new(EventManager, 0);
 
-    // Parse from file
+    delete(file);
 }
 
 static void Scene_ctor(__UNUSED__ SceneClass *this, __UNUSED__ va_list *args)

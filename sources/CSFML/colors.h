@@ -12,6 +12,7 @@
     #define COLORS_H_
 
     #include <SFML/Graphics.h>
+    #include <string.h>
 
     #define TRANSPARENT (sfColor){0, 0, 0, 0}
 
@@ -78,5 +79,74 @@
     #define LIGHT_TEAL (sfColor){0, 128, 128, 255}
 
     #define NAVY (sfColor){0, 0, 128, 255}
+
+    typedef struct color_s
+    {
+        char*       name;
+        sfColor     value;
+    } color_t;
+
+    static color_t COLORS[] = {
+        {"transparent", TRANSPARENT},
+        {"black", BLACK},
+        {"white", WHITE},
+        {"red", RED},
+        {"dark_red", DARK_RED},
+        {"light_red", LIGHT_RED},
+        {"green", GREEN},
+        {"dark_green", DARK_GREEN},
+        {"light_green", LIGHT_GREEN},
+        {"blue", BLUE},
+        {"dark_blue", DARK_BLUE},
+        {"light_blue", LIGHT_BLUE},
+        {"yellow", YELLOW},
+        {"dark_yellow", DARK_YELLOW},
+        {"light_yellow", LIGHT_YELLOW},
+        {"magenta", MAGENTA},
+        {"dark_magenta", DARK_MAGENTA},
+        {"light_magenta", LIGHT_MAGENTA},
+        {"cyan", CYAN},
+        {"dark_cyan", DARK_CYAN},
+        {"light_cyan", LIGHT_CYAN},
+        {"brown", BROWN},
+        {"dark_brown", DARK_BROWN},
+        {"light_brown", LIGHT_BROWN},
+        {"fushia", FUSHIA},
+        {"dark_fushia", DARK_FUSHIA},
+        {"light_fushia", LIGHT_FUSHIA},
+        {"orange", ORANGE},
+        {"dark_orange", DARK_ORANGE},
+        {"light_orange", LIGHT_ORANGE},
+        {"purple", PURPLE},
+        {"dark_purple", DARK_PURPLE},
+        {"light_purple", LIGHT_PURPLE},
+        {"gray", GRAY},
+        {"dark_gray", DARK_GRAY},
+        {"light_gray", LIGHT_GRAY},
+        {"maroon", MAROON},
+        {"olive", OLIVE},
+        {"dark_olive", DARK_OLIVE},
+        {"light_olive", LIGHT_OLIVE},
+        {"lime", LIME},
+        {"dark_lime", DARK_LIME},
+        {"light_lime", LIGHT_LIME},
+        {"teal", TEAL},
+        {"dark_teal", DARK_TEAL},
+        {"light_teal", LIGHT_TEAL},
+        {"navy", NAVY},
+        {NULL, {0, 0, 0, 0}}
+    };
+
+    #define GET_COLOR(color) \
+    ({ \
+        sfColor value = WHITE; \
+        for (int i = 0; COLORS[i].name != NULL; i++) { \
+            if (strcmp(COLORS[i].name, color) == 0) { \
+                value = COLORS[i].value; \
+                break; \
+            } \
+        } \
+        value; \
+    })
 
 #endif /* !COLORS _H_ */

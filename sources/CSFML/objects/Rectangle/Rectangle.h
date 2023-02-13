@@ -25,9 +25,14 @@
         /* Special Definition*/
         sfRectangleShape*  _shape;
 
+        /* Methods definitions */
+        void    (*__set__)(struct s_RectangleClass*, ...);
+
     } RectangleClass;
 
     extern const Class *Rectangle;
+
+    #define setRect(r, ...)                 ((RectangleClass*)r)->__set__(r, __VA_ARGS__)
 
     #define drawRect(t, w)                  sfRenderWindow_drawRectangleShape(((WindowClass*)w)->_window, ((RectangleClass*)t)->_shape, NULL);
 
