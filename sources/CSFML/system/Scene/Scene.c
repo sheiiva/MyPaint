@@ -8,18 +8,23 @@
 ** Copyright 2023, Corentin COUTRET-ROZET
 */
 
+#include "Scene.h"
+
 #include "System.h"
 #include "Window.h"
-#include "Rectangle.h"
+#include "File.h"
+
 #include "Button.h"
 #include "Text.h"
-#include "Scene.h"
-#include "EventManager.h"
-#include "File.h"
+#include "Rectangle.h"
 
 #include "colors.h"
 #include "fonts.h"
+
 #include "onClick.h"
+
+#include "EventManager.h"
+#include "EventOnClose.h"
 
 static void Scene_draw(SceneClass *this, WindowClass* window)
 {
@@ -127,7 +132,7 @@ static void Scene_init(SceneClass *this, char const *path)
         free_strtab(tab);
     }
 
-    this->_eventManager = new(EventManager, 0);
+    this->_eventManager = new(EventManager, 1, &EventOnClose_run);
 
     delete(file);
 }
