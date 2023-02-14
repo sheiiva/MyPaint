@@ -111,13 +111,13 @@ static void Scene_init(SceneClass *this, char const *path)
             setRect(getitem(this->_rects, iRect),
                                             (sfVector2f){atof(tab[1]), atof(tab[2])},
                                             (sfVector2f){atof(tab[3]), atof(tab[4])},
-                                            GET_COLOR(tab[5]), atoi(tab[6]), GET_COLOR(tab[7]));
+                                            GET_COLOR(tab[5]), atof(tab[6]), GET_COLOR(tab[7]));
             iRect++;
         } else if (tab[0] && strcmp(tab[0], "button") == 0) {
             setButtonRect(getitem(this->_buttons, iButton),
                                             (sfVector2f){atof(tab[1]), atof(tab[2])},
                                             (sfVector2f){atof(tab[3]), atof(tab[4])},
-                                            GET_COLOR(tab[5]), atoi(tab[6]), GET_COLOR(tab[7]),
+                                            GET_COLOR(tab[5]), atof(tab[6]), GET_COLOR(tab[7]),
                                             GET_COLOR(tab[8]), GET_COLOR(tab[9]));
             setButtonOnClick(getitem(this->_buttons, iButton), GET_ONCLICK(tab[10]));
             if (tab[11]) {

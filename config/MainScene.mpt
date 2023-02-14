@@ -1,17 +1,25 @@
 .button
-3
+4
 .rectangle
 11
 .text
 8
 .objects
-// FILE BUTTON
-button;0;5;40;30;transparent;0.;gray;gray;light_gray;FileButton;File;15;0;5;black;OpenSansRegular;white;black
-// HELP BUTTON
-button;40;5;40;30;transparent;0.;gray;gray;light_gray;HelpButton;Help;15;40;5;black;OpenSansRegular;white;black
-// VIEW BUTTON
-button;100;5;40;30;transparent;0.;gray;gray;light_gray;ViewButton;View;15;100;5;black;OpenSansRegular;white;black
-//
+
+///////BUTTONS
+
+-> FILE BUTTON
+button;0;5;40;30;transparent;0.;transparent;gray;light_gray;FileButton;File;15;0;5;black;OpenSansRegular;white;black
+-> HELP BUTTON
+button;40;5;40;30;transparent;0.;transparent;gray;light_gray;HelpButton;Help;15;40;5;black;OpenSansRegular;white;black
+-> VIEW BUTTON
+button;100;5;40;30;transparent;0.;transparent;gray;light_gray;ViewButton;View;15;100;5;black;OpenSansRegular;white;black
+
+// CANVA (BUTTON)
+button;50;300;1080;720;white;0.;transparent;white;white;ViewButton
+
+
+///////RECTANGLE
 rectangle;0;0;1920;40;white;0.;white
 rectangle;0;40;1920;100;white;0.;white
 rectangle;0;1065;1920;30;white;0.;white
@@ -23,6 +31,8 @@ rectangle;450;50;1;80;light_gray;0.;white
 rectangle;550;50;1;80;light_gray;0.;white
 rectangle;800;50;1;80;light_gray;0.;white
 rectangle;900;50;1;80;light_gray;0.;white
+
+///////TEXT
 text;Clipboard;15;50;110;black;OpenSansRegular
 text;Image;15;200;110;black;OpenSansRegular
 text;Tools;15;360;110;black;OpenSansRegular
