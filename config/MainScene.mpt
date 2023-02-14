@@ -16,7 +16,7 @@ button;40;5;40;30;transparent;0.;transparent;gray;light_gray;HelpButton;Help;15;
 button;100;5;40;30;transparent;0.;transparent;gray;light_gray;ViewButton;View;15;100;5;black;OpenSansRegular;white;black
 
 // CANVA (BUTTON)
-button;50;300;1080;720;white;0.;transparent;white;white;ViewButton
+button;50;300;1080;720;white;0.;transparent;white;white;Canva
 
 
 ///////RECTANGLE

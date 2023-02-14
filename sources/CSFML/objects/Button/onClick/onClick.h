@@ -18,6 +18,7 @@
     #include "fileButton.h"
     #include "helpButton.h"
     #include "viewButton.h"
+    #include "canva.h"
 
     typedef struct onClick_s {
         char*       name;
@@ -30,6 +31,7 @@
         {"FileButton", &FileButton_onClick},
         {"HelpButton", &HelpButton_onClick},
         {"ViewButton", &ViewButton_onClick},
+        {"Canva", &Canva_onClick},
         {NULL, NULL}
     };
 
