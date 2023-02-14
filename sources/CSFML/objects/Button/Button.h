@@ -29,7 +29,7 @@
         TextClass*          _text;
         // ImageClass*        _image;
 
-        gui_state          _state;
+        gui_state       _state;
         sfColor         _colors[3];
         sfColor         _textColors[3];
 
@@ -45,7 +45,7 @@
         sfBool  (*__isHover__)(struct s_ButtonClass*, WindowClass*);
         sfBool  (*__isClicked__)(struct s_ButtonClass*, WindowClass*);
         void    (*__onClick__)(struct s_ButtonClass*, SystemClass*);
-        void    (*__setOnClick__)(struct s_ButtonClass*, void (*)(struct s_ButtonClass*, SystemClass*));
+        void    (*__setOnClick__)(struct s_ButtonClass*, OnClick);
 
         void    (*__setText__)(struct s_ButtonClass*, ...);
         // void    (*__setImage__)(struct s_ButtonClass*, ...);
@@ -80,5 +80,8 @@
     #define getButtonFillColor(b)            getRectFillColor(((ButtonClass*)b)->_rectangle)
     #define getButtonOutlineColor(b)         getRectOutlineColor(((ButtonClass*)b)->_rectangle)
     #define getButtonOutlineThickness(b)     getRectOutlineThickness(((ButtonClass*)b)->_rectangle)
+
+    // Default onClick function
+    void Button_onClick(ButtonClass *this, SystemClass*);
 
 #endif /* !BUTTON_H_ */

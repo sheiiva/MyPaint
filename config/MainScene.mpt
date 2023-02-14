@@ -6,11 +6,11 @@
 8
 .objects
 // FILE BUTTON
-button;0;5;40;30;transparent;0.;gray;gray;light_gray;File;15;0;5;black;OpenSansRegular;white;black
+button;0;5;40;30;transparent;0.;gray;gray;light_gray;FileButton;File;15;0;5;black;OpenSansRegular;white;black
 // HELP BUTTON
-button;40;5;40;30;transparent;0.;gray;gray;light_gray;Help;15;40;5;black;OpenSansRegular;white;black
+button;40;5;40;30;transparent;0.;gray;gray;light_gray;HelpButton;Help;15;40;5;black;OpenSansRegular;white;black
 // VIEW BUTTON
-button;100;5;40;30;transparent;0.;gray;gray;light_gray;View;15;100;5;black;OpenSansRegular;white;black
+button;100;5;40;30;transparent;0.;gray;gray;light_gray;ViewButton;View;15;100;5;black;OpenSansRegular;white;black
 //
 rectangle;0;0;1920;40;white;0.;white
 rectangle;0;40;1920;100;white;0.;white

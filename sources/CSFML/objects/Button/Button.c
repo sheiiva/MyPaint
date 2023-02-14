@@ -9,6 +9,7 @@
 */
 
 #include "Button.h"
+#include "onClick.h"
 
 #include "gui_state.h"
 #include "Rectangle.h"
@@ -70,12 +71,12 @@ static void Button_processButton(ButtonClass *this, SystemClass *system)
         onButtonClick(this, system);
 }
 
-static void Button_onClick(__UNUSED__ ButtonClass *this, __UNUSED__ SystemClass *system)
+void Button_onClick(__UNUSED__ ButtonClass *this, __UNUSED__ SystemClass *system)
 {
     // TO OVERRIDE
 }
 
-static void Button_setOnClick(ButtonClass *this, void (*onClick)(ButtonClass *, SystemClass *))
+static void Button_setOnClick(ButtonClass *this, OnClick onClick)
 {
     this->__onClick__ = onClick;
 }
@@ -93,8 +94,6 @@ static void Button_setText(ButtonClass *this, ...)
     this->_textColors[HOVER] = va_arg(args, sfColor);
     this->_textColors[CLICKED] = va_arg(args, sfColor);
     va_end(args);
-
-    printf("Button: %s\n", getTextString(this->_text));
 
     // Center text
     if (!this->_rectangle)

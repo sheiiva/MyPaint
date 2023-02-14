@@ -137,7 +137,6 @@
         {NULL, {0, 0, 0, 0}}
     };
 
-    #include <stdio.h>
     #define GET_COLOR(color) \
     ({ \
         sfColor value = WHITE; \

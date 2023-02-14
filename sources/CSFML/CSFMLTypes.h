@@ -48,4 +48,7 @@
     // EventOnClose's class
     typedef struct s_EventOnCloseClass EventOnCloseClass;
 
+    /// CALLBACKS ///////////
+    typedef void (*OnClick)(ButtonClass*, SystemClass*);
+
 #endif /* !SFMLTYPES_H_ */

@@ -19,6 +19,7 @@
 
 #include "colors.h"
 #include "fonts.h"
+#include "onClick.h"
 
 static void Scene_draw(SceneClass *this, WindowClass* window)
 {
@@ -113,12 +114,13 @@ static void Scene_init(SceneClass *this, char const *path)
                                             (sfVector2f){atof(tab[3]), atof(tab[4])},
                                             GET_COLOR(tab[5]), atoi(tab[6]), GET_COLOR(tab[7]),
                                             GET_COLOR(tab[8]), GET_COLOR(tab[9]));
-            if (tab[10]) {
+            setButtonOnClick(getitem(this->_buttons, iButton), GET_ONCLICK(tab[10]));
+            if (tab[11]) {
                 setButtonText(getitem(this->_buttons, iButton),
-                                            tab[10], atoi(tab[11]),
-                                            (sfVector2f){atof(tab[12]), atof(tab[13])},
-                                            GET_COLOR(tab[14]), GET_FONT(tab[15]),
-                                            GET_COLOR(tab[16]), GET_COLOR(tab[17]));
+                                            tab[11], atoi(tab[12]),
+                                            (sfVector2f){atof(tab[13]), atof(tab[14])},
+                                            GET_COLOR(tab[15]), GET_FONT(tab[16]),
+                                            GET_COLOR(tab[17]), GET_COLOR(tab[18]));
             }
             iButton++;
         }
