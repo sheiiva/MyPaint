@@ -1,13 +1,28 @@
 .button
-1
+3
 .rectangle
-2
+11
 .text
 8
 .objects
-button;0;5;40;30;transparent;211;211;211;255;211;211;211;150;FileButton_onClick
-rectangle;0;0;1920;40;white;white;0.
-rectangle;0;40;1920;100;white;white;0.
+// FILE BUTTON
+button;0;5;40;30;transparent;0.;gray;gray;light_gray;File;15;0;5;black;OpenSansRegular;white;black
+// HELP BUTTON
+button;40;5;40;30;transparent;0.;gray;gray;light_gray;Help;15;40;5;black;OpenSansRegular;white;black
+// VIEW BUTTON
+button;100;5;40;30;transparent;0.;gray;gray;light_gray;View;15;100;5;black;OpenSansRegular;white;black
+//
+rectangle;0;0;1920;40;white;0.;white
+rectangle;0;40;1920;100;white;0.;white
+rectangle;0;1065;1920;30;white;0.;white
+rectangle;90;7.5;1;25;light_gray;0.;white
+rectangle;0;40;1920;1;light_gray;0.;white
+rectangle;150;50;1;80;light_gray;0.;white
+rectangle;300;50;1;80;light_gray;0.;white
+rectangle;450;50;1;80;light_gray;0.;white
+rectangle;550;50;1;80;light_gray;0.;white
+rectangle;800;50;1;80;light_gray;0.;white
+rectangle;900;50;1;80;light_gray;0.;white
 text;Clipboard;15;50;110;black;OpenSansRegular
 text;Image;15;200;110;black;OpenSansRegular
 text;Tools;15;360;110;black;OpenSansRegular

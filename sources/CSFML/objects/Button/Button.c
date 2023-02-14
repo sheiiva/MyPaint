@@ -18,13 +18,17 @@
 
 static void Button_draw(ButtonClass *this, WindowClass *window)
 {
-    drawRect(this->_rectangle, window);
+    if (this->_rectangle)
+        drawRect(this->_rectangle, window);
     if (this->_text)
         drawText(this->_text, window);
 }
 
 static sfBool Button_isHover(ButtonClass *this, WindowClass *window)
 {
+    if (!this->_rectangle)
+        return (sfFalse);
+
     sfVector2i mousePos = sfMouse_getPositionRenderWindow(window->_window);
     sfFloatRect rect = getRectGlobalBounds(this->_rectangle);
 
@@ -33,12 +37,16 @@ static sfBool Button_isHover(ButtonClass *this, WindowClass *window)
 
 static sfBool Button_isClicked(ButtonClass *this, WindowClass *window)
 {
+    if (!this->_rectangle)
+        return (sfFalse);
+
     return (isButtonHover(this, window) && sfMouse_isButtonPressed(sfMouseLeft));
 }
 
 static void Button_updateColors(ButtonClass *this)
 {
-    setRectFillColor(this->_rectangle, this->_colors[this->_state]);
+    if (this->_rectangle)
+        setRectFillColor(this->_rectangle, this->_colors[this->_state]);
     if (this->_text)
         setTextColor(this->_text, this->_textColors[this->_state]);
 }
@@ -79,13 +87,19 @@ static void Button_setText(ButtonClass *this, ...)
     if (this->_text)
         delete(this->_text);
     va_start(args, this);
-    this->_text = va_new(Text, &args);
+    this->_text = new(Text);
+    setText(this->_text, va_arg(args, char *), va_arg(args, unsigned int), va_arg(args, sfVector2f), va_arg(args, sfColor), va_arg(args, char*));
     this->_textColors[DEFAULT] = getTextColor(this->_text);
     this->_textColors[HOVER] = va_arg(args, sfColor);
     this->_textColors[CLICKED] = va_arg(args, sfColor);
     va_end(args);
 
+    printf("Button: %s\n", getTextString(this->_text));
+
     // Center text
+    if (!this->_rectangle)
+        return;
+
     sfFloatRect textGlobalBounds = getTextGlobalBounds(this->_text);
     unsigned int fontSize = getTextSize(this->_text);
 
@@ -97,14 +111,15 @@ static void Button_setText(ButtonClass *this, ...)
     setTextPosition(this->_text, newPos);
 }
 
-static void Button_set(ButtonClass *this, ...)
+static void Button_setRect(ButtonClass *this, ...)
 {
     va_list args;
 
     va_start(args, this);
-    this->_rectangle = va_new(Rectangle, &args);
-
-    printf("Rect created\n");
+    this->_rectangle = new(Rectangle);
+    setRect(this->_rectangle,
+            va_arg(args, sfVector2f), va_arg(args, sfVector2f),
+            va_arg(args, sfColor), va_arg(args, double), va_arg(args, sfColor));
 
     this->_colors[DEFAULT] = getRectFillColor(this->_rectangle);
     this->_colors[HOVER] = va_arg(args, sfColor);
@@ -149,7 +164,8 @@ static const ButtonClass _description = {
     ._text = NULL,
     ._state = DEFAULT,
     /* Methods definitions */
-    .__set__ = &Button_set,
+    .__setRect__ = &Button_setRect,
+    .__setText__ = &Button_setText,
     .__draw__ = &Button_draw,
     .__process__ = &Button_processButton,
     .__updateColors__ = &Button_updateColors,
@@ -157,8 +173,7 @@ static const ButtonClass _description = {
     .__isHover__ = &Button_isHover,
     .__isClicked__ = &Button_isClicked,
     .__onClick__ = &Button_onClick,
-    .__setOnClick__ = &Button_setOnClick,
-    .__setText__ = &Button_setText
+    .__setOnClick__ = &Button_setOnClick
 };
 
 const Class *Button = (const Class *)&_description;

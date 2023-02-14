@@ -95,24 +95,31 @@ static void Scene_init(SceneClass *this, char const *path)
         // Set value
         char **tab = strtowordarray(info, ";");
 
-        if (strcmp(tab[0], "text") == 0) {
+        if (tab[0] && strcmp(tab[0], "text") == 0) {
             setText(getitem(this->_texts, iText),
                                             tab[1], atoi(tab[2]),
                                             (sfVector2f){atof(tab[3]), atof(tab[4])},
                                             GET_COLOR(tab[5]), GET_FONT(tab[6]));
             iText++;
-        } else if (strcmp(tab[0], "rectangle") == 0) {
+        } else if (tab[0] && strcmp(tab[0], "rectangle") == 0) {
             setRect(getitem(this->_rects, iRect),
                                             (sfVector2f){atof(tab[1]), atof(tab[2])},
                                             (sfVector2f){atof(tab[3]), atof(tab[4])},
                                             GET_COLOR(tab[5]), atoi(tab[6]), GET_COLOR(tab[7]));
             iRect++;
-        } else if (strcmp(tab[0], "button") == 0) {
-            setButton(getitem(this->_buttons, iButton),
+        } else if (tab[0] && strcmp(tab[0], "button") == 0) {
+            setButtonRect(getitem(this->_buttons, iButton),
                                             (sfVector2f){atof(tab[1]), atof(tab[2])},
                                             (sfVector2f){atof(tab[3]), atof(tab[4])},
                                             GET_COLOR(tab[5]), atoi(tab[6]), GET_COLOR(tab[7]),
                                             GET_COLOR(tab[8]), GET_COLOR(tab[9]));
+            if (tab[10]) {
+                setButtonText(getitem(this->_buttons, iButton),
+                                            tab[10], atoi(tab[11]),
+                                            (sfVector2f){atof(tab[12]), atof(tab[13])},
+                                            GET_COLOR(tab[14]), GET_FONT(tab[15]),
+                                            GET_COLOR(tab[16]), GET_COLOR(tab[17]));
+            }
             iButton++;
         }
         free_strtab(tab);
