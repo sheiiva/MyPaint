@@ -33,7 +33,7 @@ static void System_loop(SystemClass *this)
         handleEvents(scene->_eventManager, this);
         processScene(scene, this);
         // Limit FPS
-        if (getElapsedTime_asSeconds(this->_clock) > this->_fps/60.0) {
+        if (getElapsedTime_asSeconds(this->_clock) > 1/this->_fps) {
             clearWindow(this->_window);
             displaySystem(this);
         }
